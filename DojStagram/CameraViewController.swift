@@ -85,7 +85,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             
             if captureSession.canAddOutput(dataOutput) {
                 captureSession.addOutput(dataOutput)
-//                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             }
             
             captureSession.commitConfiguration()
@@ -99,6 +99,54 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
     }
+    
+    
+    
+    
+    
+    // MARK: Camera functionality -------
+    
+    
+    func focusTo(focusPoint : CGPoint) {
+        if let device = captureDevice {
+            do {
+                
+                try device.lockForConfiguration()
+                
+                if device.isFocusPointOfInterestSupported {
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = AVCaptureFocusMode.autoFocus
+                }
+                
+                if device.isExposurePointOfInterestSupported {
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureExposureMode.autoExpose
+                }
+                
+                device.unlockForConfiguration()
+                
+            } catch let captureDeviceError {
+                
+                print(captureDeviceError)
+                
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touchPoint: UITouch = touches.first!
+        let cameraViewSize = cameraView.bounds.size
+        let focusPoint = CGPoint(x: touchPoint.location(in: cameraView).x, y: touchPoint.location(in: cameraView).y)
+        
+        focusTo(point: focusPoint)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let anyTouch = touches.first
+        let touchPercent = (anyTouch?.location(in: cameraView).x)! / screenWidth
+        focusTo(value: Float(touchPercent))
+    }
+    
     
     
     

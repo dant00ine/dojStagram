@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 class CameraButton: UIButton {
     
     @IBInspectable var lineWidth:CGFloat = 2

@@ -41,6 +41,14 @@
                                             <constraint firstAttribute="width" constant="75" id="8dT-v2-lpj"/>
                                             <constraint firstAttribute="height" constant="75" id="JDc-Ic-i19"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="1" green="0.67568200649999999" blue="0.1063626267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                <color key="value" red="0.41521183560000002" green="0.45891579459999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKp-TM-otG"/>
                                         </connections>
