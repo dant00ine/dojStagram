@@ -23,7 +23,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4f-Kx-fbi">
                                 <rect key="frame" x="0.0" y="60" width="375" height="458"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boh-G2-mZI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -35,10 +35,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFN-09-cXY">
                                 <rect key="frame" x="0.0" y="518" width="375" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6u-U7-eFm">
-                                        <rect key="frame" x="164" y="35" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6u-U7-eFm" customClass="CameraButton" customModule="DojStagram" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="13" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="8dT-v2-lpj"/>
+                                            <constraint firstAttribute="height" constant="75" id="JDc-Ic-i19"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKp-TM-otG"/>
                                         </connections>
@@ -46,7 +48,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.41521183560000002" green="0.45891579459999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="S6u-U7-eFm" firstAttribute="centerX" secondItem="MFN-09-cXY" secondAttribute="centerX" id="70X-fx-An6"/>
                                     <constraint firstAttribute="height" constant="100" id="Q5N-Iq-lZD"/>
+                                    <constraint firstItem="S6u-U7-eFm" firstAttribute="centerY" secondItem="MFN-09-cXY" secondAttribute="centerY" id="Uud-f6-z3u"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -72,6 +76,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="137.18140929535232"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="gnS-zS-z3e">
+            <objects>
+                <viewController storyboardIdentifier="PhotoVC" id="TR0-kU-pUS" customClass="PhotoViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Grr-Ux-DiN"/>
+                        <viewControllerLayoutGuide type="bottom" id="dnN-CU-xeU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R4A-zf-EnN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V09-62-kct">
+                                <rect key="frame" x="22" y="28" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="goBack:" destination="TR0-kU-pUS" eventType="touchUpInside" id="xob-3h-LY3"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NIG-Ul-k2C">
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="NIG-Ul-k2C" id="DNO-H4-rPW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDj-K2-lzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="868.51574212893559"/>
         </scene>
         <!--Profile-->
         <scene sceneID="NwK-Tq-yEq">

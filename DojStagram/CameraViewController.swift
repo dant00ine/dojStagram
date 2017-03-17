@@ -9,75 +9,155 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    
+    
+    // outlet connections and global variables ----
     
     @IBOutlet weak var cameraView: UIView!
     
-    let captureSession = AVCaptureSession()
-    var sessionOutput = AVCapturePhotoOutput()
-    var previewLayer = AVCaptureVideoPreviewLayer()
-
     
-    @IBAction func takePhoto(_ sender: UIButton) {
-        
-    }
+    let captureSession = AVCaptureSession()
+    var captureDevice : AVCaptureDevice!
+    var previewLayer : AVCaptureVideoPreviewLayer!
+    
+    var takePhoto = false
+//    var cameraViewFrame: CGRect!
+    
+    
+    
+    
+    // view life cycle ----------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        cameraViewFrame = cameraView.frame
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        prepareCamera()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        stopCaptureSession()
+    }
+    
+    
+    
+    // camera session preparation ------------------
+    
+    func prepareCamera(){
+        captureSession.sessionPreset = AVCaptureSessionPresetLow
         
-        let deviceSession = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInDualCamera, .builtInTelephotoCamera, .builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .unspecified)
+        if let availableDevices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .back).devices {
+            captureDevice = availableDevices.first
+            beginSession()
+        }
         
-        for device in (deviceSession?.devices)! {
+    }
+    
+    func beginSession(){
+        do {
+            let captureDeviceInput = try AVCaptureDeviceInput(device: captureDevice)
             
-            if device.position == AVCaptureDevicePosition.front {
+            captureSession.addInput(captureDeviceInput)
+            
+        } catch let avError {
+            print(avError.localizedDescription)
+        }
                 
-                do {
-                    
-                    let input = try AVCaptureDeviceInput(device: device)
-                    
-                    if captureSession.canAddInput(input){
-                        
-                        captureSession.addInput(input)
-                        
-                        if captureSession.canAddOutput(sessionOutput) {
-                            captureSession.addOutput(sessionOutput)
-                            
-                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                            previewLayer.connection.videoOrientation = .portrait
-                            
-                            cameraView.layer.addSublayer(previewLayer)
-//                            cameraView.addSubview(button?)
-                            previewLayer.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
-                            previewLayer.bounds = cameraView.frame
-                            
-                            captureSession.startRunning()
-                            
-                        }
-                        
-                    }
-                    
-                } catch let avError {
-                    print(avError)
-                }
-                
+        if let newPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
+            
+            previewLayer = newPreviewLayer
+            cameraView.layer.addSublayer(self.previewLayer)
+            
+            previewLayer.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
+            previewLayer.bounds = cameraView.frame
+            
+            captureSession.startRunning()
+            
+            let dataOutput = AVCaptureVideoDataOutput()
+            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString): NSNumber(value: kCVPixelFormatType_32BGRA)]
+            dataOutput.alwaysDiscardsLateVideoFrames = true
+            
+            
+            if captureSession.canAddOutput(dataOutput) {
+                captureSession.addOutput(dataOutput)
+//                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             }
+            
+            captureSession.commitConfiguration()
+            
+            let queue = DispatchQueue(label: "com.dojstagram.captureQueue")
+            dataOutput.setSampleBufferDelegate(self, queue: queue)
+            
+//            print("preview layer frame: \(previewLayer.frame)")
+//            print("cameraView layer frame: \(cameraView.layer.frame)")
             
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    
+    
+    // MARK: Take photo code ------------
+    
+    @IBAction func takePhoto(_ sender: UIButton) {
+        
+        takePhoto = true
+        
     }
-
+    
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        
+        if takePhoto {
+            takePhoto = false
+            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
+                
+                let photoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
+                
+                photoVC.takenPhoto = image
+                
+                DispatchQueue.main.async {
+                   
+                    self.present(photoVC, animated: true, completion: {
+                        self.stopCaptureSession()
+                    })
+                }
+                
+            }
+        }
+        
+    }
+    
+    func getImageFromSampleBuffer(buffer: CMSampleBuffer) -> UIImage? {
+        if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let context = CIContext()
+            
+            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
+            
+            if let image = context.createCGImage(ciImage, from: imageRect) {
+                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
+            }
+            
+        }
+        
+        return nil
+    }
+    
+    func stopCaptureSession () {
+        self.captureSession.stopRunning()
+        
+        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.captureSession.removeInput(input)
+            }
+        }
+    }
 
 }
 

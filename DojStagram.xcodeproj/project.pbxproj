@@ -13,6 +13,8 @@
 		C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE1A1E7C57DE007858C6 /* DojStagram.xcdatamodeld */; };
 		C0F2EE1E1E7C57DE007858C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */; };
 		C0F2EE211E7C57DE007858C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */; };
+		C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */; };
+		C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE321E7C8DC3007858C6 /* CameraButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0F2EE201E7C57DE007858C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0F2EE221E7C57DE007858C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = ../PhotoViewController.swift; sourceTree = "<group>"; };
+		C0F2EE321E7C8DC3007858C6 /* CameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +61,32 @@
 			isa = PBXGroup;
 			children = (
 				C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */,
-				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
 				C0F2EE171E7C57DE007858C6 /* Main.storyboard */,
+				C0F2EE2F1E7C83F6007858C6 /* views */,
+				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
 				C0F2EE1A1E7C57DE007858C6 /* DojStagram.xcdatamodeld */,
 			);
 			path = DojStagram;
+			sourceTree = "<group>";
+		};
+		C0F2EE2E1E7C83F0007858C6 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
+				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		C0F2EE2F1E7C83F6007858C6 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C0F2EE321E7C8DC3007858C6 /* CameraButton.swift */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */,
+				C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */,
+				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
 				C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */,
 				C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */,
 			);
