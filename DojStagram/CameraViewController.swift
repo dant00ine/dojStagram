@@ -138,15 +138,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let cameraViewSize = cameraView.bounds.size
         let focusPoint = CGPoint(x: touchPoint.location(in: cameraView).x, y: touchPoint.location(in: cameraView).y)
         
-        focusTo(point: focusPoint)
+        focusTo(focusPoint: focusPoint)
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let anyTouch = touches.first
-        let touchPercent = (anyTouch?.location(in: cameraView).x)! / screenWidth
-        focusTo(value: Float(touchPercent))
-    }
-    
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let anyTouch = touches.first
+//        let touchPercent = (anyTouch?.location(in: cameraView).x)! / screenWidth
+//        focusTo(value: Float(touchPercent))
+//    }
+//    
     
     
     
