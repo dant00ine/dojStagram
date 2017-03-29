@@ -32,7 +32,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        cameraViewFrame = cameraView.frame
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "UserLoggedIn")
+        
+        if(!isUserLoggedIn){
+            print("user not logged in")
+            performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

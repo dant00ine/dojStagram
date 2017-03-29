@@ -45,6 +45,10 @@ class LoginPageViewController: UIViewController {
         
     }
 
+    @IBAction func noAccountButtonPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "registerInstead", sender: nil)
+    }
     
     
     func makeSignInRequest(userEmail:String, userPassword:String){
@@ -82,6 +86,7 @@ class LoginPageViewController: UIViewController {
     
     
     func updateUserLoggedInFlag(){
+        print("user logged in flag updated")
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "userLoggedIn")
         defaults.synchronize()
