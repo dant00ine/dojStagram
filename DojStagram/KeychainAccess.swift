@@ -11,27 +11,27 @@ import Foundation
 public class KeychainAccess {
     
     private class func secClassGenericPassword() -> NSString {
-        return NSString(format: kSecClassGenericPassword) as String
+        return NSString(format: kSecClassGenericPassword)
     }
     
-    private class func secClass() -> String {
-        return NSString(format: kSecClass) as String
+    private class func secClass() -> NSString {
+        return NSString(format: kSecClass)
     }
     
-    private class func secAttrService() -> String {
-        return NSString(format: kSecAttrService) as String
+    private class func secAttrService() -> NSString {
+        return NSString(format: kSecAttrService)
     }
     
-    private class func secAttrAccount() -> String {
-        return NSString(format: kSecAttrAccount) as String
+    private class func secAttrAccount() -> NSString {
+        return NSString(format: kSecAttrAccount)
     }
     
-    private class func secValueData() -> String {
-        return NSString(format: kSecValueData) as String
+    private class func secValueData() -> NSString {
+        return NSString(format: kSecValueData)
     }
     
-    private class func secReturnData() -> String {
-        return NSString(format: kSecReturnData) as String
+    private class func secReturnData() -> NSString {
+        return NSString(format: kSecReturnData)
     }
     
     
@@ -54,19 +54,17 @@ public class KeychainAccess {
     
     public class func passwordForAccount(account: String, service: String = "keyChainDefaultService") -> String? {
         
-        let keyChainQuery = NSMutableDictionary(objects: [secClassGenericPassword(), service, account, kCFBooleanTrue], forKeys: [secClass() as NSCopying, secAttrService() as NSCopying, secAttrAccount() as NSCopying, secReturnData() as NSCopying])
+        let keyChainQuery = NSMutableDictionary(objects: [secClassGenericPassword(), service, account, kCFBooleanTrue], forKeys: [secClass(), secAttrService(), secAttrAccount(), secReturnData()])
 
         var dataTypeRef: AnyObject?
-        
-        // TO DO: THIS IS BROKEN
         let status: OSStatus = SecItemCopyMatching(keyChainQuery, &dataTypeRef)
-        var contentsOfKeychain: NSString? = nil
         
         if status == errSecSuccess {
             if let retrievedData = dataTypeRef as? NSData {
                 let password = NSString(data: retrievedData as Data, encoding: String.Encoding.utf8.rawValue)
                 return (password as! String)
             }
+            return nil
         }
         else {
             return nil
