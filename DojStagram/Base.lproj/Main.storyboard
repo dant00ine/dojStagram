@@ -362,7 +362,7 @@
         <!--Profile-->
         <scene sceneID="NwK-Tq-yEq">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" title="Profile" id="gsj-uO-GfR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" title="Profile" id="gsj-uO-GfR" customClass="SettingsViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YbC-ae-Iiw"/>
                         <viewControllerLayoutGuide type="bottom" id="8zn-XA-PRA"/>
@@ -370,13 +370,23 @@
                     <view key="view" contentMode="scaleToFill" id="3RO-tC-A9N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XQ-Kd-6fb">
+                                <rect key="frame" x="156" y="291" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LOGOUT"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="gsj-uO-GfR" eventType="touchUpInside" id="USN-FO-UXv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="yfE-hg-OUa"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="yfE-hg-OUa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKD-uH-yix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-810" y="136"/>
+            <point key="canvasLocation" x="-810.39999999999998" y="135.38230884557723"/>
         </scene>
         <!--Home-->
         <scene sceneID="WTm-Q3-V0C">

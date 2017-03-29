@@ -58,6 +58,9 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
+            
+            print("token expiry date: \(userTokenExpiryDate ?? "None")")
+            
             let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
             let now = Date()
             

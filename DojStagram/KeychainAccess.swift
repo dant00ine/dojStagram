@@ -10,7 +10,7 @@ import Foundation
 
 public class KeychainAccess {
     
-    private class func secClassGenericPassword() -> String {
+    private class func secClassGenericPassword() -> NSString {
         return NSString(format: kSecClassGenericPassword) as String
     }
     
@@ -53,20 +53,20 @@ public class KeychainAccess {
     
     
     public class func passwordForAccount(account: String, service: String = "keyChainDefaultService") -> String? {
-        let queryAttributes = NSDictionary(objects: [secClassGenericPassword(), service, account, true], forKeys: [secClass() as NSCopying, secAttrService() as NSCopying, secAttrAccount() as NSCopying, secReturnData() as NSCopying])
         
+        let keyChainQuery = NSMutableDictionary(objects: [secClassGenericPassword(), service, account, kCFBooleanTrue], forKeys: [secClass() as NSCopying, secAttrService() as NSCopying, secAttrAccount() as NSCopying, secReturnData() as NSCopying])
 
         var dataTypeRef: AnyObject?
         
+        // TO DO: THIS IS BROKEN
+        let status: OSStatus = SecItemCopyMatching(keyChainQuery, &dataTypeRef)
+        var contentsOfKeychain: NSString? = nil
         
-        // TO DO: this probably isn't going to work
-        let status: OSStatus = withUnsafeMutablePointer(to: &dataTypeRef) { _ in SecItemCopyMatching(queryAttributes as CFDictionary, dataTypeRef as! UnsafeMutablePointer<CFTypeRef?>?) }
-        
-        if status == noErr {
-            let retrievedData : NSData = dataTypeRef as! NSData
-            let password = NSString(data: retrievedData as Data, encoding: String.Encoding.utf8.rawValue)
-            
-            return (password as! String)
+        if status == errSecSuccess {
+            if let retrievedData = dataTypeRef as? NSData {
+                let password = NSString(data: retrievedData as Data, encoding: String.Encoding.utf8.rawValue)
+                return (password as! String)
+            }
         }
         else {
             return nil
