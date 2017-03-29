@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC59FACB1E8B507900FECC51 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */; };
+		AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */; };
 		C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810B71E8B38F30092EBEF /* AESCrypt.m */; };
 		C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BA1E8B38F30092EBEF /* NSData+Base64.m */; };
 		C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BC1E8B38F30092EBEF /* NSData+CommonCrypto.m */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 		C09810B51E8B38F20092EBEF /* DojStagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DojStagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		C09810B61E8B38F30092EBEF /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		C09810B71E8B38F30092EBEF /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */,
 				C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */,
 				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
+				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
 				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
 			);
 			name = controllers;
@@ -146,6 +151,7 @@
 		C0F2EE2F1E7C83F6007858C6 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */,
 				C0F2EE321E7C8DC3007858C6 /* CameraButton.swift */,
 			);
 			name = views;
@@ -183,7 +189,7 @@
 				TargetAttributes = {
 					C0F2EE0F1E7C57DD007858C6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = DT64YE9NK6;
+						DevelopmentTeam = P3H2N7399X;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -226,7 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09810C21E8B38F30092EBEF /* NSString+Base64.m in Sources */,
+				AC59FACB1E8B507900FECC51 /* GalleryViewController.swift in Sources */,
 				C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */,
+				AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */,
 				C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */,
 				C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */,
 				C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */,
@@ -359,7 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = DT64YE9NK6;
+				DEVELOPMENT_TEAM = P3H2N7399X;
 				INFOPLIST_FILE = DojStagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.DojStagram;
@@ -375,7 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = DT64YE9NK6;
+				DEVELOPMENT_TEAM = P3H2N7399X;
 				INFOPLIST_FILE = DojStagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.DojStagram;
