@@ -80,7 +80,6 @@
                     <tabBarItem key="tabBarItem" title="Camera" id="6Xb-UD-56g"/>
                     <connections>
                         <outlet property="cameraView" destination="k4f-Kx-fbi" id="Lre-OV-x4j"/>
-                        <segue destination="NAP-zP-njL" kind="presentation" identifier="loginSegue" id="tX7-kT-XH6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -237,7 +236,7 @@
         <!--Login Page View Controller-->
         <scene sceneID="Kaf-rj-jfJ">
             <objects>
-                <viewController id="NAP-zP-njL" customClass="LoginPageViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="NAP-zP-njL" customClass="LoginPageViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="owA-lU-S4T"/>
                         <viewControllerLayoutGuide type="bottom" id="JcH-ap-aR8"/>

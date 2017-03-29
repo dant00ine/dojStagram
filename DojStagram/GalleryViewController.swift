@@ -9,9 +9,20 @@
 import UIKit
 import CoreData
 
+class GalleryImage {
+    var imageTitle : String!
+    var imageThumbnailURL : String!
+    var imageId : String!
+    var thumbLocalImage : UIImage!
+}
+
 private let reuseIdentifier = "PhotoViewCell"
 
 class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var shouldFetchNewData = true
+    var dataArray = [GalleryImage]()
+    let httpHelper = HTTPHelper()
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -31,11 +42,98 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
+        
+        if(!isUserLoggedIn){
+            print("user not logged in")
+            if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
+                self.tabBarController?.present(loginController, animated: true, completion: nil)
+            }
+        } else {
+            // check if API token has expired
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
+            let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
+            let now = Date()
+            
+            let comparison = now.compare(dateFromString!)
+            
+            if shouldFetchNewData {
+                shouldFetchNewData = false
+                //self.setNavigationItems()
+                loadPhotoData()
+            }
+            
+            if comparison != ComparisonResult.orderedAscending {
+                //self.logoutBtnTapped()
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    func loadPhotoData(){
+        let httpRequest = httpHelper.buildRequest(path: "get_photos", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
+        
+        httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
+            
+            if error != nil {
+                let errorMessage = self.httpHelper.getErrorMessage(error: error!)
+                let errorAlert = UIAlertView(title: "Error", message: errorMessage, delegate: nil, cancelButtonTitle: "OK")
+                errorAlert.show()
+                
+                return
+            }
+            
+            
+            do {
+                
+                if let jsonDataArray = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Any> {
+                    
+                    if jsonDataArray != nil {
+                        for imageData in jsonDataArray {
+                            
+                            if let imageDataDict = imageData as? NSDictionary {
+                                let photoPost = GalleryImage()
+                                
+                                photoPost.imageTitle = imageDataDict.value(forKey:"title") as! String
+                                photoPost.imageId = imageDataDict.value(forKey:"random_id") as! String
+                                photoPost.imageThumbnailURL = imageDataDict.value(forKey:"image_url") as! String
+                                
+                                self.dataArray.append(photoPost)
+
+                            }
+                           
+                        }
+                        
+                        self.collectionView?.reloadData()
+                    }
+                    
+                }
+                
+            } catch let serializationError {
+                print(serializationError.localizedDescription)
+            }
+            
+            
+        
+        })
+    }
+    
+    
+    
+    
+    // MARK: Camera roll functionality
 
     // add new photo to gallery
     func addAPhoto() {
@@ -158,12 +256,37 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     // show photo gallery
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoViewCell
-        let photo = Photos[indexPath.item]
-        cell.name.text = photo.name
         
-        let path = getDocumentsDirectory().appendingPathComponent(photo.image!)
-        cell.imageView.image = UIImage(contentsOfFile: path.path)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoViewCell
+        
+        let rowIndex = self.dataArray.count - (indexPath.row + 1)
+        let galleryRowObj = self.dataArray[rowIndex] as GalleryImage
+        
+        cell.backgroundColor = UIColor.black
+        
+        let imgURL: URL = URL(string: galleryRowObj.imageThumbnailURL)!
+        
+        let request = URLRequest(url: imgURL)
+        
+        URLSession.shared.dataTask(with: request){(data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if error != nil {
+                print("Get image error: \(error?.localizedDescription)")
+            } else {
+                if data != nil {
+                    let image = UIImage(data: data!)
+                    
+                    DispatchQueue.main.async{
+                        cell.imageView.image = image
+                    }
+                }
+            }
+        }
+        
+        // let photo = Photos[indexPath.item]
+        // cell.name.text = photo.name
+        
+        // let path = getDocumentsDirectory().appendingPathComponent(photo.image!)
+        // cell.imageView.image = UIImage(contentsOfFile: path.path)
         // make it fancy
         cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
         cell.imageView.layer.borderWidth = 2
