@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810B71E8B38F30092EBEF /* AESCrypt.m */; };
+		C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BA1E8B38F30092EBEF /* NSData+Base64.m */; };
+		C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BC1E8B38F30092EBEF /* NSData+CommonCrypto.m */; };
+		C09810C21E8B38F30092EBEF /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BE1E8B38F30092EBEF /* NSString+Base64.m */; };
+		C09810C71E8B39590092EBEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09810C61E8B39590092EBEF /* Security.framework */; };
+		C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */; };
+		C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */; };
+		C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */; };
+		C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */; };
 		C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */; };
 		C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */; };
 		C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE171E7C57DE007858C6 /* Main.storyboard */; };
@@ -18,6 +27,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C09810B51E8B38F20092EBEF /* DojStagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DojStagram-Bridging-Header.h"; sourceTree = "<group>"; };
+		C09810B61E8B38F30092EBEF /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
+		C09810B71E8B38F30092EBEF /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
+		C09810B91E8B38F30092EBEF /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		C09810BA1E8B38F30092EBEF /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		C09810BB1E8B38F30092EBEF /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		C09810BC1E8B38F30092EBEF /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		C09810BD1E8B38F30092EBEF /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		C09810BE1E8B38F30092EBEF /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		C09810C61E8B39590092EBEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
+		C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
+		C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		C0F2EE101E7C57DE007858C6 /* DojStagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojStagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -35,17 +58,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09810C71E8B39590092EBEF /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C09810C41E8B39120092EBEF /* AESCrypt */ = {
+			isa = PBXGroup;
+			children = (
+				C09810B61E8B38F30092EBEF /* AESCrypt.h */,
+				C09810B71E8B38F30092EBEF /* AESCrypt.m */,
+				C09810B91E8B38F30092EBEF /* NSData+Base64.h */,
+				C09810BA1E8B38F30092EBEF /* NSData+Base64.m */,
+				C09810BB1E8B38F30092EBEF /* NSData+CommonCrypto.h */,
+				C09810BC1E8B38F30092EBEF /* NSData+CommonCrypto.m */,
+				C09810BD1E8B38F30092EBEF /* NSString+Base64.h */,
+				C09810BE1E8B38F30092EBEF /* NSString+Base64.m */,
+			);
+			name = AESCrypt;
+			sourceTree = "<group>";
+		};
+		C09810C51E8B39590092EBEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C09810C61E8B39590092EBEF /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C09810CC1E8B3A0C0092EBEF /* session-utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */,
+				C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */,
+			);
+			name = "session-utilities";
+			sourceTree = "<group>";
+		};
 		C0F2EE071E7C57DD007858C6 = {
 			isa = PBXGroup;
 			children = (
 				C0F2EE121E7C57DE007858C6 /* DojStagram */,
 				C0F2EE111E7C57DE007858C6 /* Products */,
+				C09810B51E8B38F20092EBEF /* DojStagram-Bridging-Header.h */,
+				C09810C41E8B39120092EBEF /* AESCrypt */,
+				C09810C51E8B39590092EBEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +123,7 @@
 				C0F2EE171E7C57DE007858C6 /* Main.storyboard */,
 				C0F2EE2F1E7C83F6007858C6 /* views */,
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
+				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
@@ -75,6 +135,8 @@
 		C0F2EE2E1E7C83F0007858C6 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */,
+				C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */,
 				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
 				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
 			);
@@ -122,6 +184,7 @@
 					C0F2EE0F1E7C57DD007858C6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = DT64YE9NK6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -162,10 +225,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09810C21E8B38F30092EBEF /* NSString+Base64.m in Sources */,
+				C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */,
+				C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */,
 				C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */,
 				C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */,
 				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
+				C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */,
+				C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */,
 				C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */,
+				C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */,
+				C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */,
+				C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */,
 				C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,11 +358,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DT64YE9NK6;
 				INFOPLIST_FILE = DojStagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.DojStagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DojStagram-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -300,11 +374,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DT64YE9NK6;
 				INFOPLIST_FILE = DojStagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.DojStagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DojStagram-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -328,6 +404,7 @@
 				C0F2EE271E7C57DE007858C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
