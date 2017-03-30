@@ -165,7 +165,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         print("Add photo: \(photo.name)")
         addItemtoDB(photo)
         collectionView?.reloadData()
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 
     // get directory path to photos

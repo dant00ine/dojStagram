@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CameraViewController.swift
 //  DojStagram
 //
 //  Created by Daniel Thompson on 3/17/17.
@@ -17,12 +17,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     @IBOutlet weak var cameraView: UIView!
     
+    @IBAction func takePhoto(_ sender: UIButton) {
+        takeAPhoto = true
+    }
     
+
     let captureSession = AVCaptureSession()
     var captureDevice : AVCaptureDevice!
     var previewLayer : AVCaptureVideoPreviewLayer!
+    var takenPhoto: UIImage?
     
-    var takePhoto = false
+    var takeAPhoto = false
+    
 //    var cameraViewFrame: CGRect!
     
     
@@ -36,7 +42,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        // verify user is logged in, else reroute
         let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
         
         if(!isUserLoggedIn){
@@ -112,8 +118,46 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
     }
     
+    func stopCaptureSession () {
+        self.captureSession.stopRunning()
+        
+        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.captureSession.removeInput(input)
+            }
+        }
+    }
     
     
+    // MARK: Take photo code ------------
+    
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        
+        if takeAPhoto {
+            takeAPhoto = false
+            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
+                takenPhoto = image
+                stopCaptureSession()
+                dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func getImageFromSampleBuffer(buffer: CMSampleBuffer) -> UIImage? {
+        if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let context = CIContext()
+            
+            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
+            
+            if let image = context.createCGImage(ciImage, from: imageRect) {
+                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
+            }
+            
+        }
+        
+        return nil
+    }
     
     
     // MARK: Camera functionality -------
@@ -160,64 +204,4 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 //    }
 //    
     
-    
-    
-    
-    // MARK: Take photo code ------------
-    
-    @IBAction func takePhoto(_ sender: UIButton) {
-        
-        takePhoto = true
-        
-    }
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        
-        if takePhoto {
-            takePhoto = false
-            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
-                
-                let photoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
-                
-                photoVC.takenPhoto = image
-                
-                DispatchQueue.main.async {
-                   
-                    self.present(photoVC, animated: true, completion: {
-                        self.stopCaptureSession()
-                    })
-                }
-                
-            }
-        }
-        
-    }
-    
-    func getImageFromSampleBuffer(buffer: CMSampleBuffer) -> UIImage? {
-        if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-            let context = CIContext()
-            
-            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
-            
-            if let image = context.createCGImage(ciImage, from: imageRect) {
-                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
-            }
-            
-        }
-        
-        return nil
-    }
-    
-    func stopCaptureSession () {
-        self.captureSession.stopRunning()
-        
-        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
-            for input in inputs {
-                self.captureSession.removeInput(input)
-            }
-        }
-    }
-
 }
-
