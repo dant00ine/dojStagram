@@ -1,8 +1,8 @@
 //
 //  RegisterPageViewController.swift
-//  LoginRegistration
+//  DojStagram
 //
-//  Created by Daniel Thompson on 3/21/17.
+//  Created by Daniel Thompson on 3/30/17.
 //  Copyright © 2017 Daniel Thompson. All rights reserved.
 //
 
@@ -25,15 +25,15 @@ class RegisterPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func alreadyHaveAccountButtonPressed(_ sender: UIButton) {
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func registerButtonTapped(_ sender: UIButton) {
-        
         let userName = userNameTextField.text
-        let userEmail = userEmailTextField.text
-        let userPassword = userPasswordTextField.text
+        let userEmail = emailTextField.text
+        let userPassword = passwordTextField.text
         let repeatPassword = repeatPasswordTextField.text
         
         // Check for empty fields
@@ -55,10 +55,17 @@ class RegisterPageViewController: UIViewController {
         }
         
         makeSignUpRequest(userName: userName!, userEmail: userEmail!, userPassword: userPassword!)
-        
     }
     
     
+    
+    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: (() -> Void)? = nil, alertMessage:String){
+        let myAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
+    }
     
     func makeSignUpRequest(userName: String, userEmail: String, userPassword: String) {
         
@@ -66,7 +73,7 @@ class RegisterPageViewController: UIViewController {
         var httpRequest = httpHelper.buildRequest(path: "signup", method: "POST", authType: HTTPRequestAuthType.HTTPBasicAuth)
         
         // encrypt password with the API key
-
+        
         let encrypted_password = AESCrypt.encrypt(userPassword, password: HTTPHelper.API_AUTH_PASSWORD)
         // Set the request body
         httpRequest.httpBody = "{\"full_name\":\"\(userName)\",\"email\":\"\(userEmail)\",\"password\":\"\(encrypted_password!)\"}".data(using: String.Encoding.utf8)
@@ -89,7 +96,6 @@ class RegisterPageViewController: UIViewController {
             
             // find some way to verify that the account was actually created
             
-            print(data)
             
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -102,16 +108,6 @@ class RegisterPageViewController: UIViewController {
         }
         
         
-    }
-    
-    
-
-    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: (() -> Void)? = nil, alertMessage:String){
-        let myAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        myAlert.addAction(okAction)
-        
-        self.present(myAlert, animated: true, completion: nil)
     }
 
 }

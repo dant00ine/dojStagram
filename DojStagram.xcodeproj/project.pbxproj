@@ -10,6 +10,7 @@
 		AC59FACB1E8B507900FECC51 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */; };
 		AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */; };
 		AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84222E1E8C976F006CFCEA /* EditViewController.swift */; };
+		C00F040A1E8DABF600C23F6C /* HomeTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00F04091E8DABF600C23F6C /* HomeTableTableViewController.swift */; };
 		C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */; };
 		C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810B71E8B38F30092EBEF /* AESCrypt.m */; };
 		C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BA1E8B38F30092EBEF /* NSData+Base64.m */; };
@@ -36,6 +37,7 @@
 		AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 		AC84222E1E8C976F006CFCEA /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C00F04091E8DABF600C23F6C /* HomeTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableTableViewController.swift; sourceTree = "<group>"; };
 		C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C09810B51E8B38F20092EBEF /* DojStagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DojStagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		C09810B61E8B38F30092EBEF /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
@@ -81,8 +83,8 @@
 		C03C96741E8C53DD002B7F6F /* session */ = {
 			isa = PBXGroup;
 			children = (
+				C0D6E4941E8DB7A20065B887 /* RegisterPageViewController.swift */,
 				C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */,
-				C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */,
 				C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */,
 			);
 			name = session;
@@ -278,7 +280,9 @@
 				C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */,
 				C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */,
 				C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */,
+				C0D6E4951E8DB7A20065B887 /* RegisterPageViewController.swift in Sources */,
 				C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */,
+				C00F040A1E8DABF600C23F6C /* HomeTableTableViewController.swift in Sources */,
 				C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
