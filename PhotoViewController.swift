@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var takenPhoto:UIImage?
+    var selectedPhoto:UIImage?
     
     let httpHelper = HTTPHelper()
     
@@ -21,7 +21,33 @@ class PhotoViewController: UIViewController {
     }
     
     @IBAction func postPhoto(_ sender: UIBarButtonItem) {
-        let imgData: Data? = UIImagePNGRepresentation(takenPhoto!)
+        postAPhoto()
+    }
+    
+    @IBOutlet weak var captionText: UITextField!
+    @IBOutlet weak var locationText: UITextField!
+    
+    @IBAction func takePhoto(_ sender: UIBarButtonItem) {
+        takeAPhoto()
+    }
+    
+    @IBAction func getPhoto(_ sender: UIBarButtonItem) {
+        getAPhoto()
+    }
+    @IBAction func editPhoto(_ sender: UIBarButtonItem) {
+        editAPhoto()
+    }
+    @IBAction func deletePhoto(_ sender: UIBarButtonItem) {
+        deleteAPhoto()
+    }
+    
+    //
+    // Photo Manipulation stuff
+    //
+
+    // post a photo
+    func postAPhoto() {
+        let imgData: Data? = UIImagePNGRepresentation(selectedPhoto!)
         let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData!, title: "WOOT TYTLE")
         
         httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
@@ -49,33 +75,54 @@ class PhotoViewController: UIViewController {
             } catch let serializationError {
                 print(serializationError.localizedDescription)
             }
-        
+            
         })
+    }
+
+    // take a new photo, add to library
+    func takeAPhoto() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+        self.present(cameraVC, animated: true, completion: nil)
+
+        if (cameraVC.takenPhoto != nil) {
+            selectedPhoto = cameraVC.takenPhoto
+            imageView.image = selectedPhoto
+            UIImageWriteToSavedPhotosAlbum(selectedPhoto!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+    
+    // get a photo from the photo library
+    func getAPhoto() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
         
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        selectedPhoto = image
+        imageView.image = selectedPhoto
+    }
+
+    // edit the currently selected photo
+    func editAPhoto() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = storyboard.instantiateViewController(withIdentifier: "EditVC") as! EditViewController
+        editVC.currentImage = selectedPhoto
+        self.present(editVC, animated: true, completion: nil)
+
+        if (editVC.currentImage != nil) {
+            selectedPhoto = editVC.currentImage
+            imageView.image = selectedPhoto
+        }
+        if editVC.imageChanged! {    // photo edited, save to photo library
+            UIImageWriteToSavedPhotosAlbum(editVC.currentImage!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
     }
     
-    @IBOutlet weak var captionText: UITextField!
-    @IBOutlet weak var locationText: UITextField!
-    
-    @IBAction func takePhoto(_ sender: UIBarButtonItem) {
-        takeAPhoto()
-    }
-    
-    @IBAction func getPhoto(_ sender: UIBarButtonItem) {
-        getAPhoto()
-    }
-    @IBAction func editPhoto(_ sender: UIBarButtonItem) {
-        editAPhoto()
-    }
-    @IBAction func deletePhoto(_ sender: UIBarButtonItem) {
-        deleteAPhoto()
-    }
-    
-    //
-    // Photo Manipulation stuff
-    //
-    
-    // save an image to the photo library
+    // save a photo into the photo library
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error { // couldn't save image, display an alert
             let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
@@ -88,32 +135,6 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    // take a new photo, add to gallery
-    func takeAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
-        //        photoVC.takenPhoto = image
-        present(cameraVC, animated: true)
-    }
-    
-    // edit a photo in gallery
-    func editAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let photoVC = storyboard.instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
-        //        photoVC.takenPhoto = image
-        present(photoVC, animated: true)
-    }
-    
-    // share a photo with friends
-    func shareAPhoto() {
-        
-    }
-    
-    // rename a photo in gallery
-    func renameAPhoto() {
-        
-    }
-    
     // delete a photo from gallery
     func deleteAPhoto() {
         
@@ -124,8 +145,21 @@ class PhotoViewController: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        // verify user is logged in, else reroute
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
         
-        if let availableImage = takenPhoto {
+        if(!isUserLoggedIn){
+            print("user not logged in")
+            if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
+                self.tabBarController?.present(loginController, animated: true, completion: nil)
+            }
+        }
+        // display last selected photo
+        if let availableImage = selectedPhoto {
             imageView.image = availableImage
         }
     }
