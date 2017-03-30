@@ -16,6 +16,7 @@
 		C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */; };
 		C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */; };
 		C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */; };
+		C0C939BA1E8B45270011D790 /* dojoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C939B91E8B45270011D790 /* dojoLogo.png */; };
 		C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */; };
 		C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */; };
 		C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE171E7C57DE007858C6 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		C0C939B91E8B45270011D790 /* dojoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLogo.png; sourceTree = SOURCE_ROOT; };
 		C0F2EE101E7C57DE007858C6 /* DojStagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojStagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
+				C0C939B91E8B45270011D790 /* dojoLogo.png */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
 				C0F2EE1A1E7C57DE007858C6 /* DojStagram.xcdatamodeld */,
@@ -212,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C939BA1E8B45270011D790 /* dojoLogo.png in Resources */,
 				C0F2EE211E7C57DE007858C6 /* LaunchScreen.storyboard in Resources */,
 				C0F2EE1E1E7C57DE007858C6 /* Assets.xcassets in Resources */,
 				C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */,
