@@ -9,8 +9,10 @@
 import UIKit
 
 class RegisterPageViewController: UIViewController {
-
-
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var repeatPasswordTextField: UITextField!
     
     let httpHelper = HTTPHelper()
     
@@ -90,8 +92,8 @@ class RegisterPageViewController: UIViewController {
             }
             
             let completionHandler = {
-                print(self)
                 self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "registerToHome", sender: self)
             }
             
             // find some way to verify that the account was actually created
@@ -105,6 +107,7 @@ class RegisterPageViewController: UIViewController {
             }
             
             self.displayErrorAlertMessage(alertTitle: "Success", completion: completionHandler, alertMessage: "Account has been created")
+
         }
         
         

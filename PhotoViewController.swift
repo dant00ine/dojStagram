@@ -134,26 +134,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             present(ac, animated: true)
         }
     }
-    
-    // take a new photo, add to gallery
-    func takeAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
-        //        photoVC.takenPhoto = image
-        present(cameraVC, animated: true)
-    }
-    
-    // edit a photo in gallery
-    func editAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let photoVC = storyboard.instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
-        //        photoVC.takenPhoto = image
-        present(photoVC, animated: true)
-    }
-    
-    func getAPhoto(){
-        
-    }
+
     
     // share a photo with friends
     func shareAPhoto() {

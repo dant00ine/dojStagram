@@ -20,9 +20,7 @@
 		C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */; };
 		C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */; };
 		C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */; };
-		C0C939BA1E8B45270011D790 /* dojoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C939B91E8B45270011D790 /* dojoLogo.png */; };
-		C0C939BC1E8D97090011D790 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0C939BB1E8D97090011D790 /* camera.jpg */; };
-		C0C939C01E8D9ABE0011D790 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */; };
+		C0D6E4951E8DB7A20065B887 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D6E4941E8DB7A20065B887 /* RegisterPageViewController.swift */; };
 		C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */; };
 		C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */; };
 		C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE171E7C57DE007858C6 /* Main.storyboard */; };
@@ -52,10 +50,7 @@
 		C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
-		C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
-		C0C939B91E8B45270011D790 /* dojoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLogo.png; sourceTree = SOURCE_ROOT; };
-		C0C939BB1E8D97090011D790 /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = Assets.xcassets/camera.jpg; sourceTree = "<group>"; };
-		C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C0D6E4941E8DB7A20065B887 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		C0F2EE101E7C57DE007858C6 /* DojStagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojStagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -97,7 +92,7 @@
 				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
 				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
 				AC84222E1E8C976F006CFCEA /* EditViewController.swift */,
-				C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */,
+				C00F04091E8DABF600C23F6C /* HomeTableTableViewController.swift */,
 			);
 			name = photos;
 			sourceTree = "<group>";
