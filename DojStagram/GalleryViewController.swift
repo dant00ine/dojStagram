@@ -92,6 +92,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
             
             if error != nil {
                 let errorMessage = self.httpHelper.getErrorMessage(error: error!)
+                // needs to be made into UIAlertController
                 let errorAlert = UIAlertView(title: "Error", message: errorMessage, delegate: nil, cancelButtonTitle: "OK")
                 errorAlert.show()
                 
@@ -103,24 +104,24 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
                 
                 if let jsonDataArray = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Any> {
                     
-                    if jsonDataArray != nil {
-                        for imageData in jsonDataArray {
-                            
-                            if let imageDataDict = imageData as? NSDictionary {
-                                let photoPost = GalleryImage()
-                                
-                                photoPost.imageTitle = imageDataDict.value(forKey:"title") as! String
-                                photoPost.imageId = imageDataDict.value(forKey:"random_id") as! String
-                                photoPost.imageThumbnailURL = imageDataDict.value(forKey:"image_url") as! String
-                                
-                                self.dataArray.append(photoPost)
 
-                            }
-                           
+                    for imageData in jsonDataArray {
+                        
+                        if let imageDataDict = imageData as? NSDictionary {
+                            let photoPost = GalleryImage()
+                            
+                            photoPost.imageTitle = imageDataDict.value(forKey:"title") as! String
+                            photoPost.imageId = imageDataDict.value(forKey:"random_id") as! String
+                            photoPost.imageThumbnailURL = imageDataDict.value(forKey:"image_url") as! String
+                            
+                            self.dataArray.append(photoPost)
+                            
                         }
                         
-                        self.collectionView?.reloadData()
                     }
+                    
+                    self.collectionView?.reloadData()
+                
                     
                 }
                 
@@ -162,7 +163,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         photo.filepath = String(describing: imagePath)
         photo.image = imageName
         photo.createdAt = Date() as NSDate?
-        print("Add photo: \(photo.name)")
+        print("Add photo: \(String(describing: photo.name))")
         addItemtoDB(photo)
         collectionView?.reloadData()
         dismiss(animated: true, completion: nil)
@@ -273,7 +274,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         
         URLSession.shared.dataTask(with: request){(data: Data?, response: URLResponse?, error: Error?) -> Void in
             if error != nil {
-                print("Get image error: \(error?.localizedDescription)")
+                print("Get image error: \(String(describing: error?.localizedDescription))")
             } else {
                 if data != nil {
                     let image = UIImage(data: data!)
