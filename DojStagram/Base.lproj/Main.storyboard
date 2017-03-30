@@ -173,9 +173,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="E63-0t-j3Z">
                                         <connections>
@@ -222,8 +221,22 @@
                                 <rect key="frame" x="0.0" y="66" width="375" height="557"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpE-Kp-akF">
+                                <rect key="frame" x="292" y="552" width="40" height="30"/>
+                                <state key="normal" title="POST"/>
+                                <connections>
+                                    <action selector="postPhoto:" destination="Vpx-3n-bdh" eventType="touchUpInside" id="yby-Wu-rja"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VNE-aW-aBb" firstAttribute="top" secondItem="IJB-JK-sOy" secondAttribute="bottom" id="1TL-GJ-C9d"/>
+                            <constraint firstItem="IJB-JK-sOy" firstAttribute="top" secondItem="BpE-Kp-akF" secondAttribute="bottom" constant="41" id="Nfe-Kr-oF5"/>
+                            <constraint firstItem="IJB-JK-sOy" firstAttribute="leading" secondItem="nhm-L9-V58" secondAttribute="leading" id="ciu-VD-CIp"/>
+                            <constraint firstAttribute="trailing" secondItem="IJB-JK-sOy" secondAttribute="trailing" id="mab-WA-PLy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BpE-Kp-akF" secondAttribute="trailing" constant="27" id="tFf-QZ-bZ8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="8cY-jb-Vyt" id="A64-fW-oBp"/>
