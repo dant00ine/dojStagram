@@ -27,12 +27,24 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     
     
-    
     // view life cycle ----------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        cameraViewFrame = cameraView.frame
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
+        
+        if(!isUserLoggedIn){
+            print("user not logged in")
+            if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
+                self.tabBarController?.present(loginController, animated: true, completion: nil)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

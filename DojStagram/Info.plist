@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Dojstagram wants to access your camera roll for great moments</string>
 	<key>NSCameraUsageDescription</key>
-	<string>GIVE IT OVER HEY</string>
+	<string>Dojstagram wants to use your camera to make happiness :)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

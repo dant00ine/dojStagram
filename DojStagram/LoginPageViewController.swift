@@ -28,6 +28,13 @@ class LoginPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func noAccountButtonPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "registerInstead", sender: nil)
+    }
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
         let userEmail = userEmailTextField.text
@@ -44,7 +51,7 @@ class LoginPageViewController: UIViewController {
         }
         
     }
-
+    
     
     
     func makeSignInRequest(userEmail:String, userPassword:String){
@@ -82,6 +89,7 @@ class LoginPageViewController: UIViewController {
     
     
     func updateUserLoggedInFlag(){
+        print("user logged in flag updated")
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "userLoggedIn")
         defaults.synchronize()
@@ -92,17 +100,17 @@ class LoginPageViewController: UIViewController {
     func saveApiTokenInKeychain(tokenDict: NSDictionary){
         
         tokenDict.enumerateKeysAndObjects({
-            dictKey, dictObj, stopBool in
+            dictKey, dictVal, stopBool in
             
             let myKey = dictKey as! String
-            let myObj = dictObj as! String
+            let myVal = dictVal as! String
             
             if myKey == "api_authtoken" {
-                KeychainAccess.setPassword(password: myObj, account: "Auth_Token", service: "KeyChainService")
+                KeychainAccess.setPassword(password: myVal, account: "Auth_Token", service: "KeyChainService")
             }
             
             if myKey == "authtoken_expiry" {
-                KeychainAccess.setPassword(password: myObj, account: "Auth_Token_Expiry", service: "KeyChainService")
+                KeychainAccess.setPassword(password: myVal, account: "Auth_Token_Expiry", service: "KeyChainService")
             }
         })
         
