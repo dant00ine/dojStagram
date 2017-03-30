@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		AC59FACB1E8B507900FECC51 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */; };
 		AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */; };
-		ACD06A8F1E8C92890048D3EF /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD06A8E1E8C92890048D3EF /* ImageViewController.swift */; };
+		AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84222E1E8C976F006CFCEA /* EditViewController.swift */; };
+		C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */; };
 		C09810BF1E8B38F30092EBEF /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810B71E8B38F30092EBEF /* AESCrypt.m */; };
 		C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BA1E8B38F30092EBEF /* NSData+Base64.m */; };
 		C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = C09810BC1E8B38F30092EBEF /* NSData+CommonCrypto.m */; };
@@ -18,7 +19,6 @@
 		C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */; };
 		C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */; };
 		C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */; };
-		C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */; };
 		C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */; };
 		C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */; };
 		C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE171E7C57DE007858C6 /* Main.storyboard */; };
@@ -32,7 +32,8 @@
 /* Begin PBXFileReference section */
 		AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
-		ACD06A8E1E8C92890048D3EF /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		AC84222E1E8C976F006CFCEA /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C09810B51E8B38F20092EBEF /* DojStagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DojStagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		C09810B61E8B38F30092EBEF /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		C09810B71E8B38F30092EBEF /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
 				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
 				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
+				AC84222E1E8C976F006CFCEA /* EditViewController.swift */,
 			);
 			name = photos;
 			sourceTree = "<group>";
@@ -161,12 +163,8 @@
 		C0F2EE2E1E7C83F0007858C6 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */,
-				C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */,
-				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
-				ACD06A8E1E8C92890048D3EF /* ImageViewController.swift */,
-				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
-				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
+				C03C96751E8C53EF002B7F6F /* photos */,
+				C03C96741E8C53DD002B7F6F /* session */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -256,12 +254,11 @@
 			files = (
 				C09810C21E8B38F30092EBEF /* NSString+Base64.m in Sources */,
 				AC59FACB1E8B507900FECC51 /* GalleryViewController.swift in Sources */,
-				C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */,
 				AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */,
 				C09810C11E8B38F30092EBEF /* NSData+CommonCrypto.m in Sources */,
 				C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */,
-				ACD06A8F1E8C92890048D3EF /* ImageViewController.swift in Sources */,
 				C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */,
+				AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */,
 				C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */,
 				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
 				C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */,

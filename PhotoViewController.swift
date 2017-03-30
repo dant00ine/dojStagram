@@ -16,19 +16,11 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBAction func goBack(_ sender: UIButton) {
-        
+    @IBAction func goBack(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func goSave(_ sender: UIButton) {
-        
-        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func postPhoto(_ sender: UIButton) {
-        
+    @IBAction func postPhoto(_ sender: UIBarButtonItem) {
         let imgData: Data? = UIImagePNGRepresentation(takenPhoto!)
         let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData!, title: "WOOT TYTLE")
         
@@ -62,13 +54,15 @@ class PhotoViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var captionText: UITextField!
+    @IBOutlet weak var locationText: UITextField!
     
-    @IBAction func sharePhoto(_ sender: UIBarButtonItem) {
-        shareAPhoto()
+    @IBAction func takePhoto(_ sender: UIBarButtonItem) {
+        takeAPhoto()
     }
     
-    @IBAction func renamePhoto(_ sender: UIBarButtonItem) {
-        renameAPhoto()
+    @IBAction func getPhoto(_ sender: UIBarButtonItem) {
+        getAPhoto()
     }
     @IBAction func editPhoto(_ sender: UIBarButtonItem) {
         editAPhoto()

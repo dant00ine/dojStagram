@@ -1,5 +1,5 @@
 //
-//  ImageViewController.swift
+//  EditViewController.swift
 //  DojStagram
 //
 //  Created by Paul Binneboese on 3/29/17.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var currentImage: UIImage!
     var context: CIContext!
@@ -32,12 +32,13 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     @IBAction func save(_ sender: UIButton) {
         UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func intensityChanged(_ sender: UISlider) {
         applyProcessing()
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "InstaFilter"
