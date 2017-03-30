@@ -54,7 +54,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKp-TM-otG"/>
+                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XAK-wU-8V1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -248,7 +248,7 @@
                             <constraint firstAttribute="trailing" secondItem="IJB-JK-sOy" secondAttribute="trailing" id="mab-WA-PLy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add Photo" id="YKY-JO-KXG"/>
+                    <tabBarItem key="tabBarItem" title="Add Post" id="YKY-JO-KXG"/>
                     <navigationItem key="navigationItem" id="RpR-bu-EVX">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="Om4-mr-D4y"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="kLv-Zw-4GP"/>
@@ -323,6 +323,14 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="save:" destination="RBC-Fq-xPh" eventType="touchUpInside" id="U35-ed-UCW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev9-Ag-gKV">
+                                <rect key="frame" x="204" y="612" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="RBC-Fq-xPh" eventType="touchUpInside" id="iCI-fo-fjg"/>
                                 </connections>
                             </button>
                         </subviews>
