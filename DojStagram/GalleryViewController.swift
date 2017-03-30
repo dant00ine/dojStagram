@@ -280,23 +280,24 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                     
                     DispatchQueue.main.async{
                         cell.imageView.image = image
+                        
+                        cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+                        cell.imageView.layer.borderWidth = 2
+                        cell.imageView.layer.cornerRadius = 3
+                        cell.layer.cornerRadius = 7
                     }
                 }
             }
         }
         
+        return cell
         // let photo = Photos[indexPath.item]
         // cell.name.text = photo.name
         
         // let path = getDocumentsDirectory().appendingPathComponent(photo.image!)
         // cell.imageView.image = UIImage(contentsOfFile: path.path)
         // make it fancy
-        cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        cell.imageView.layer.borderWidth = 2
-        cell.imageView.layer.cornerRadius = 3
-        cell.layer.cornerRadius = 7
         
-        return cell
     }
 
     // add a name to photo
