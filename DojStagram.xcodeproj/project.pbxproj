@@ -19,8 +19,9 @@
 		C09810CA1E8B39FE0092EBEF /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */; };
 		C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */; };
 		C09810CF1E8B3AB40092EBEF /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */; };
-		C09810D01E8B3AB40092EBEF /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */; };
 		C0C939BA1E8B45270011D790 /* dojoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C939B91E8B45270011D790 /* dojoLogo.png */; };
+		C0C939BC1E8D97090011D790 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0C939BB1E8D97090011D790 /* camera.jpg */; };
+		C0C939C01E8D9ABE0011D790 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */; };
 		C0F2EE141E7C57DE007858C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */; };
 		C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */; };
 		C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F2EE171E7C57DE007858C6 /* Main.storyboard */; };
@@ -51,6 +52,8 @@
 		C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		C0C939B91E8B45270011D790 /* dojoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLogo.png; sourceTree = SOURCE_ROOT; };
+		C0C939BB1E8D97090011D790 /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = Assets.xcassets/camera.jpg; sourceTree = "<group>"; };
+		C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C0F2EE101E7C57DE007858C6 /* DojStagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojStagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F2EE131E7C57DE007858C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
 				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
 				AC84222E1E8C976F006CFCEA /* EditViewController.swift */,
+				C0C939BF1E8D9ABE0011D790 /* CustomTableViewCell.swift */,
 			);
 			name = photos;
 			sourceTree = "<group>";
@@ -156,6 +160,7 @@
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
+				C0C939BB1E8D97090011D790 /* camera.jpg */,
 				C0C939B91E8B45270011D790 /* dojoLogo.png */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
@@ -247,6 +252,7 @@
 				C0F2EE211E7C57DE007858C6 /* LaunchScreen.storyboard in Resources */,
 				C0F2EE1E1E7C57DE007858C6 /* Assets.xcassets in Resources */,
 				C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */,
+				C0C939BC1E8D97090011D790 /* camera.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +272,7 @@
 				AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */,
 				C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */,
 				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
+				C0C939C01E8D9ABE0011D790 /* CustomTableViewCell.swift in Sources */,
 				C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */,
 				C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */,
 				C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */,

@@ -104,6 +104,10 @@ class PhotoViewController: UIViewController {
         present(photoVC, animated: true)
     }
     
+    func getAPhoto(){
+        
+    }
+    
     // share a photo with friends
     func shareAPhoto() {
         

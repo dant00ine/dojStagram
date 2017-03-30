@@ -10,10 +10,7 @@ import UIKit
 
 class RegisterPageViewController: UIViewController {
 
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var userEmailTextField: UITextField!
-    @IBOutlet weak var userPasswordTextField: UITextField!
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
+
     
     let httpHelper = HTTPHelper()
     
