@@ -71,6 +71,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C03C96741E8C53DD002B7F6F /* session */ = {
+			isa = PBXGroup;
+			children = (
+				C09810CD1E8B3AB40092EBEF /* LoginPageViewController.swift */,
+				C09810CE1E8B3AB40092EBEF /* RegisterPageViewController.swift */,
+				C03C96721E8C53CE002B7F6F /* SettingsViewController.swift */,
+			);
+			name = session;
+			sourceTree = "<group>";
+		};
+		C03C96751E8C53EF002B7F6F /* photos */ = {
+			isa = PBXGroup;
+			children = (
+				C0F2EE2A1E7C83E2007858C6 /* PhotoViewController.swift */,
+				AC59FAC81E8B507900FECC51 /* GalleryViewController.swift */,
+				C0F2EE151E7C57DE007858C6 /* CameraViewController.swift */,
+			);
+			name = photos;
+			sourceTree = "<group>";
+		};
 		C09810C41E8B39120092EBEF /* AESCrypt */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +262,7 @@
 				C0F2EE161E7C57DE007858C6 /* CameraViewController.swift in Sources */,
 				ACD06A8F1E8C92890048D3EF /* ImageViewController.swift in Sources */,
 				C0F2EE2C1E7C83E2007858C6 /* PhotoViewController.swift in Sources */,
+				C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */,
 				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
 				C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */,
 				C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */,

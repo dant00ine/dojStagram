@@ -5,7 +5,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Gotta check out your cool pics</string>
 	<key>NSCameraUsageDescription</key>
-	<string>GIVE IT OVER HEY</string>
+	<string>Dojstagram wants to use your camera to make happiness :)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

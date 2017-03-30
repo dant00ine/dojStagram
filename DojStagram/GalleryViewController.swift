@@ -58,6 +58,9 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
+            
+            print("token expiry date: \(userTokenExpiryDate ?? "None")")
+            
             let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
             let now = Date()
             
@@ -83,7 +86,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
     
     
     func loadPhotoData(){
-        let httpRequest = httpHelper.buildRequest(path: "get_photos", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
+        let httpRequest = httpHelper.buildRequest(path: "get_user_photos", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
         
         httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
             
@@ -314,35 +317,5 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         present(ac, animated: true)
     }
     
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }

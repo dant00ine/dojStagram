@@ -175,9 +175,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="E63-0t-j3Z">
                                         <connections>
@@ -224,8 +223,22 @@
                                 <rect key="frame" x="0.0" y="66" width="375" height="557"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpE-Kp-akF">
+                                <rect key="frame" x="292" y="552" width="40" height="30"/>
+                                <state key="normal" title="POST"/>
+                                <connections>
+                                    <action selector="postPhoto:" destination="Vpx-3n-bdh" eventType="touchUpInside" id="yby-Wu-rja"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VNE-aW-aBb" firstAttribute="top" secondItem="IJB-JK-sOy" secondAttribute="bottom" id="1TL-GJ-C9d"/>
+                            <constraint firstItem="IJB-JK-sOy" firstAttribute="top" secondItem="BpE-Kp-akF" secondAttribute="bottom" constant="41" id="Nfe-Kr-oF5"/>
+                            <constraint firstItem="IJB-JK-sOy" firstAttribute="leading" secondItem="nhm-L9-V58" secondAttribute="leading" id="ciu-VD-CIp"/>
+                            <constraint firstAttribute="trailing" secondItem="IJB-JK-sOy" secondAttribute="trailing" id="mab-WA-PLy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BpE-Kp-akF" secondAttribute="trailing" constant="27" id="tFf-QZ-bZ8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="8cY-jb-Vyt" id="A64-fW-oBp"/>
@@ -457,7 +470,7 @@
         <!--Profile-->
         <scene sceneID="NwK-Tq-yEq">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" title="Profile" id="gsj-uO-GfR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" title="Profile" id="gsj-uO-GfR" customClass="SettingsViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YbC-ae-Iiw"/>
                         <viewControllerLayoutGuide type="bottom" id="8zn-XA-PRA"/>
@@ -465,13 +478,23 @@
                     <view key="view" contentMode="scaleToFill" id="3RO-tC-A9N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XQ-Kd-6fb">
+                                <rect key="frame" x="156" y="291" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LOGOUT"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="gsj-uO-GfR" eventType="touchUpInside" id="USN-FO-UXv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="yfE-hg-OUa"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="yfE-hg-OUa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKD-uH-yix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-810" y="136"/>
+            <point key="canvasLocation" x="-810.39999999999998" y="135.38230884557723"/>
         </scene>
         <!--Home-->
         <scene sceneID="WTm-Q3-V0C">

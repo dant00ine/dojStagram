@@ -12,6 +12,8 @@ class PhotoViewController: UIViewController {
     
     var takenPhoto:UIImage?
     
+    let httpHelper = HTTPHelper()
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func goBack(_ sender: UIButton) {
@@ -24,6 +26,42 @@ class PhotoViewController: UIViewController {
         UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func postPhoto(_ sender: UIButton) {
+        
+        let imgData: Data? = UIImagePNGRepresentation(takenPhoto!)
+        let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData!, title: "WOOT TYTLE")
+        
+        httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
+            
+            if error != nil {
+                let errorMessage = self.httpHelper.getErrorMessage(error: error!)
+                self.displayErrorAlertMessage(alertMessage: errorMessage)
+                
+                return
+            }
+            
+            do {
+                let jsonDataDict = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                
+                let galleryImgObjNew = GalleryImage()
+                
+                print("response from image upload: \(jsonDataDict)")
+                
+                galleryImgObjNew.imageId = jsonDataDict.value(forKey: "random_id") as! String
+                galleryImgObjNew.imageTitle = jsonDataDict.value(forKey: "title") as! String
+                galleryImgObjNew.imageThumbnailURL = jsonDataDict.value(forKey: "image_url") as! String
+                
+                self.dismiss(animated: true, completion: nil)
+                
+            } catch let serializationError {
+                print(serializationError.localizedDescription)
+            }
+        
+        })
+        
+    }
+    
     
     @IBAction func sharePhoto(_ sender: UIBarButtonItem) {
         shareAPhoto()
@@ -103,15 +141,12 @@ class PhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: (() -> Void)? = nil, alertMessage:String){
+        let myAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
+    }
     
 }
