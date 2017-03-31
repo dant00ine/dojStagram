@@ -70,14 +70,6 @@ struct HTTPHelper {
         
         let session = URLSession.shared
         
-        // Good place for debugging:
-        
-        // print("here's the request: \(request)")
-        
-        // print("request body: \(request.httpBody)")
-        // print("request header:\(request.allHTTPHeaderFields)")
-        
-        
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil {
@@ -96,7 +88,7 @@ struct HTTPHelper {
                 }else {
                     do {
                         let errorDict = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
-                        let responseError : Error = NSError(domain: "HTTPHelperError", code: httpResponse.statusCode, userInfo: errorDict as? [NSObject : AnyObject])
+                        let responseError : Error = NSError(domain: "HTTPHelperError", code: httpResponse.statusCode, userInfo: errorDict as [NSObject : AnyObject]?)
                         completion(data, responseError)
 
                     } catch {

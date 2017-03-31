@@ -11,11 +11,17 @@ import UIKit
 class HomeTableTableViewController: UITableViewController {
     
     let httpHelper = HTTPHelper()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        getHomeFeedPosts()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,8 +46,42 @@ class HomeTableTableViewController: UITableViewController {
     
     func getHomeFeedPosts(){
         
+        let homePostsRequest = httpHelper.buildRequest(path: "start_home_feed", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
+        print(homePostsRequest)
+
+        httpHelper.sendRequest(request: homePostsRequest, completion: {(data, error)in
+            
+            if error != nil {
+                
+                self.displayErrorAlertMessage(alertMessage: String(describing: error))
+                
+            }
+            
+            if data != nil {
+                do {
+                    let jsonResponseDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray
+                    
+                    print(jsonResponseDictionary ?? "No response dict")
+                    
+                } catch let requestError {
+                    print("request error: \(requestError.localizedDescription)")
+                }
+            }
+            
         
+        })
         
+    }
+    
+    
+    
+    
+    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: (() -> Void)? = nil, alertMessage:String){
+        let myAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
     }
     
 }
