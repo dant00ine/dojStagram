@@ -182,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="camera" id="E63-0t-j3Z">
                                         <connections>
@@ -526,10 +526,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="gsj-uO-GfR" kind="relationship" relationship="viewControllers" id="mIf-iS-Kzq"/>
                         <segue destination="6gz-SL-uxq" kind="relationship" relationship="viewControllers" id="AAU-Ho-puQ"/>
                         <segue destination="Vpx-3n-bdh" kind="relationship" relationship="viewControllers" id="QbP-yq-cTl"/>
                         <segue destination="kxM-30-OkG" kind="relationship" relationship="viewControllers" id="RGR-TA-1bi"/>
+                        <segue destination="gsj-uO-GfR" kind="relationship" relationship="viewControllers" id="mIf-iS-Kzq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPt-i1-xQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -808,7 +808,7 @@
         <image name="dojoLogo.png" width="177" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AAU-Ho-puQ"/>
-        <segue reference="QbP-yq-cTl"/>
+        <segue reference="Xv2-DG-G9V"/>
+        <segue reference="TgR-9U-eG7"/>
     </inferredMetricsTieBreakers>
 </document>

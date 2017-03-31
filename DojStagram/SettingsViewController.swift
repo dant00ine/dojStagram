@@ -30,17 +30,14 @@ class SettingsViewController: UIViewController {
         let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
         
         if(!isUserLoggedIn){
-            print("user not logged in")
             if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
-                self.tabBarController?.present(loginController, animated: true, completion: nil)
+                self.present(loginController, animated: true, completion: nil)
             }
         } else {
             // check if API token has expired
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
-            
-            print("token expiry date: \(userTokenExpiryDate ?? "None")")
             
             let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
             let now = Date()
@@ -60,6 +57,7 @@ class SettingsViewController: UIViewController {
         
         clearLoggedinFlag()
         clearAPITokensFromKeyChain()
+        
         self.viewDidAppear(true)
         
     }
