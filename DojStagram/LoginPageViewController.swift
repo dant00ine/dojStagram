@@ -78,8 +78,9 @@ class LoginPageViewController: UIViewController {
             do {
                 let responseDict = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
                 
-                self.updateUserLoggedInFlag()
                 self.saveApiTokenInKeychain(tokenDict: responseDict)
+                
+                self.updateUserLoggedInFlag()
                 
             } catch let jsonParseError {
                 print(jsonParseError.localizedDescription)

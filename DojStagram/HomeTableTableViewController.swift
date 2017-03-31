@@ -149,6 +149,7 @@ class HomeTableTableViewController: UITableViewController {
                                 DispatchQueue.main.async {
                                     self.postData.append(newPhoto)
                                     self.tableView.reloadData()
+                                    print("total posts: \(self.postData.count)")
                                 }
                                 
                                 

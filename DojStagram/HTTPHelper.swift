@@ -103,7 +103,7 @@ struct HTTPHelper {
     }
     
     
-    func uploadRequest(path: String, data: Data, title: String) -> URLRequest {
+    func uploadRequest(path: String, data: Data, caption: String, location: String) -> URLRequest {
         
         let boundary = "---------------------------14737809831466499882746641449"
         var request = buildRequest(path: path, method: "POST", authType: HTTPRequestAuthType.HTTPTokenAuth, requestContentType: HTTPRequestContentType.HTTPMultipartContent, requestBoundary: boundary) as URLRequest
@@ -140,8 +140,11 @@ struct HTTPHelper {
         let formData = "Content-Disposition: form-data; name=\"title\"\r\n\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
         bodyParams.append(formData!)
         
-        let formData2 = title.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        let formData2 = caption.data(using: String.Encoding.utf8, allowLossyConversion: false)
         bodyParams.append(formData2!)
+        
+        let formData3 = location.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        bodyParams.append(formData3!)
         
         let closingFormData = "\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
         bodyParams.append(closingFormData!)
@@ -152,6 +155,8 @@ struct HTTPHelper {
         bodyParams.append(boundaryDataEnd!)
         
         request.httpBody = bodyParams as Data
+        
+        print("HERE DEM BODY PARAMS: \(bodyParams)")
         return request
     }
     

@@ -18,8 +18,8 @@ class RegisterPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +70,6 @@ class RegisterPageViewController: UIViewController {
     }
     
     func makeSignUpRequest(userName: String, userEmail: String, userPassword: String) {
-        
         // create HTTP request and set request header
         var httpRequest = httpHelper.buildRequest(path: "signup", method: "POST", authType: HTTPRequestAuthType.HTTPBasicAuth)
         
@@ -78,7 +77,7 @@ class RegisterPageViewController: UIViewController {
         
         let encrypted_password = AESCrypt.encrypt(userPassword, password: HTTPHelper.API_AUTH_PASSWORD)
         // Set the request body
-        httpRequest.httpBody = "{\"full_name\":\"\(userName)\",\"email\":\"\(userEmail)\",\"password\":\"\(encrypted_password!)\"}".data(using: String.Encoding.utf8)
+        httpRequest.httpBody = "{\"username\":\"\(userName)\",\"email\":\"\(userEmail)\",\"password\":\"\(encrypted_password!)\"}".data(using: String.Encoding.utf8)
         
         // Send the request
         httpHelper.sendRequest(request: httpRequest){
@@ -92,9 +91,7 @@ class RegisterPageViewController: UIViewController {
             }
             
             let completionHandler: (UIAlertAction)-> Void = { alertAction in
-                
                 self.dismissViewController()
-                print(self)
             }
             self.displayErrorAlertMessage(alertTitle: "Success", completion: completionHandler, alertMessage: "Account has been created")
             
@@ -103,7 +100,8 @@ class RegisterPageViewController: UIViewController {
             
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                print(jsonResponse)
+                
+                print("signup jsonResponse \(jsonResponse)")
             } catch let jsonParsingError {
                 print(jsonParsingError.localizedDescription)
             }

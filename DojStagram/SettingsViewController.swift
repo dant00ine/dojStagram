@@ -27,21 +27,38 @@ class SettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
+        
+        if(!isUserLoggedIn){
+            if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
+                self.present(loginController, animated: true, completion: nil)
+            }
+        } else {
+            // check if API token has expired
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
+            
+            let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
+            let now = Date()
+            
+            let comparison = now.compare(dateFromString!)
+            
+            if comparison != ComparisonResult.orderedAscending {
+                self.logoutPressed(nil)
+            }
+        }
+
+        
     }
     
     
-    
-    
-    @IBAction func logoutPressed(_ sender: UIButton) {
+    @IBAction func logoutPressed(_ sender: UIButton?) {
         
         clearLoggedinFlag()
         clearAPITokensFromKeyChain()
+        
         self.viewDidAppear(true)
-        
-        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"){
-            self.present(loginVC, animated: true, completion: nil)
-        }
-        
         
     }
     
