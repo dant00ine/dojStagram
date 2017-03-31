@@ -50,8 +50,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     // post a photo
     func postAPhoto() {
         
-        var caption:String!
-        var location:String!
+        let caption:String? = captionText.text
+        let location:String? = locationText.text
         
         if selectedPhoto == nil {
             return
@@ -59,20 +59,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         let unsafeImgData: Data? = UIImagePNGRepresentation(selectedPhoto)
         
-        let unsafeCaption = captionText.text
-        let unsafeLocation = locationText.text
-        
-        if let castCaption: String = unsafeCaption {
-            caption = castCaption
-        }
-        
-        if let castLocation: String = unsafeLocation {
-            location = castLocation
-        }
-        
         if let imgData: Data = unsafeImgData {
             
-            let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData, title: "WOOT TYTLE")
+            let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData, caption: caption ?? "no title", location: location ?? "unknown location")
             
             httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
                 
@@ -102,6 +91,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 
             })
             
+        } else {
+            // display error alert (y no image?)
         }
 
         
