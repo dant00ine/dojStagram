@@ -11,6 +11,8 @@
 		AC59FACD1E8B507900FECC51 /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */; };
 		AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84222E1E8C976F006CFCEA /* EditViewController.swift */; };
 		C00F040A1E8DABF600C23F6C /* HomeTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00F04091E8DABF600C23F6C /* HomeTableTableViewController.swift */; };
+		C015839D1E8ECC3300A77CC1 /* registerBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C015839C1E8ECC3300A77CC1 /* registerBackground.png */; };
+		C015839F1E8ED3FB00A77CC1 /* dojoLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = C015839E1E8ED3FB00A77CC1 /* dojoLogo2.png */; };
 		C02673231E8DDD180034D0D5 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C02673221E8DDD180034D0D5 /* camera.jpg */; };
 		C02673251E8DE2B40034D0D5 /* dojoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C02673241E8DE2B40034D0D5 /* dojoLogo.png */; };
 		C02673271E8DE8CD0034D0D5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = C02673261E8DE8CD0034D0D5 /* camera.png */; };
@@ -39,6 +41,8 @@
 		AC59FACA1E8B507900FECC51 /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 		AC84222E1E8C976F006CFCEA /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		C00F04091E8DABF600C23F6C /* HomeTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableTableViewController.swift; sourceTree = "<group>"; };
+		C015839C1E8ECC3300A77CC1 /* registerBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = registerBackground.png; path = Assets.xcassets/registerBackground.png; sourceTree = "<group>"; };
+		C015839E1E8ED3FB00A77CC1 /* dojoLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dojoLogo2.png; path = Assets.xcassets/dojoLogo2.png; sourceTree = "<group>"; };
 		C02673221E8DDD180034D0D5 /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = Assets.xcassets/camera.jpg; sourceTree = "<group>"; };
 		C02673241E8DE2B40034D0D5 /* dojoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dojoLogo.png; path = Assets.xcassets/dojoLogo.png; sourceTree = "<group>"; };
 		C02673261E8DE8CD0034D0D5 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Assets.xcassets/camera.png; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 		C09810CC1E8B3A0C0092EBEF /* session-utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C015839E1E8ED3FB00A77CC1 /* dojoLogo2.png */,
 				C09810C81E8B39FE0092EBEF /* HTTPHelper.swift */,
 				C09810C91E8B39FE0092EBEF /* KeychainAccess.swift */,
 			);
@@ -164,6 +169,7 @@
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
+				C015839C1E8ECC3300A77CC1 /* registerBackground.png */,
 				C02673221E8DDD180034D0D5 /* camera.jpg */,
 				C02673261E8DE8CD0034D0D5 /* camera.png */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
@@ -258,6 +264,8 @@
 				C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */,
 				C02673271E8DE8CD0034D0D5 /* camera.png in Resources */,
 				C02673251E8DE2B40034D0D5 /* dojoLogo.png in Resources */,
+				C015839D1E8ECC3300A77CC1 /* registerBackground.png in Resources */,
+				C015839F1E8ED3FB00A77CC1 /* dojoLogo2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
