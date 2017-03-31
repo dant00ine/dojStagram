@@ -26,10 +26,6 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
-        addAPhoto()
-    }
-    
     var Photos = [Photo]()
     
     override func viewDidLoad() {
@@ -136,38 +132,18 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
     
     
     
-    
-    // MARK: Camera roll functionality
 
-    // add new photo to gallery
-    func addAPhoto() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    // select photo from Photo Library
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
-        
-        let imageName = UUID().uuidString
-        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
-        
-        if let jpegData = UIImageJPEGRepresentation(image, 80) {
-            try? jpegData.write(to: imagePath)
-        }
+    // MARK: Database stuff
         // save it in our gallery
-        let photo = getNewItem()
-        photo.name = "Unknown"
-        photo.filepath = String(describing: imagePath)
-        photo.image = imageName
-        photo.createdAt = Date() as NSDate?
-        print("Add photo: \(String(describing: photo.name))")
-        addItemtoDB(photo)
-        collectionView?.reloadData()
-        dismiss(animated: true, completion: nil)
-    }
+//        let photo = getNewItem()
+//        photo.name = "Unknown"
+//        photo.filepath = String(describing: imagePath)
+//        photo.image = imageName
+//        photo.createdAt = Date() as NSDate?
+//        print("Add photo: \(String(describing: photo.name))")
+//        addItemtoDB(photo)
+//        collectionView?.reloadData()
+//        dismiss(animated: true, completion: nil)
 
     // get directory path to photos
     func getDocumentsDirectory() -> URL {
@@ -176,17 +152,6 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         return documentsDirectory
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     //
     // DATABASE FUNCTIONS
     //
@@ -255,7 +220,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Photos.count
+//        return Photos.count
+        return dataArray.count
     }
 
     // show photo gallery
