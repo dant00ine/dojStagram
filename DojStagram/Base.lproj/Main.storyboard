@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -463,16 +463,16 @@
         <scene sceneID="WTm-Q3-V0C">
             <objects>
                 <tableViewController storyboardIdentifier="HomeVC" title="Home" id="6gz-SL-uxq" customClass="HomeTableTableViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Avv-Vj-o93">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="362" sectionHeaderHeight="28" sectionFooterHeight="28" id="Avv-Vj-o93">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Friend" rowHeight="320" id="tZ4-Ge-1np" customClass="CustomTableViewCell" customModule="DojStagram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="320"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostViewCell" rowHeight="362" id="tZ4-Ge-1np" customClass="PostViewCell" customModule="DojStagram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="362"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tZ4-Ge-1np" id="oYe-va-niC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="361.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-uP-Szk">
@@ -481,13 +481,27 @@
                                                 <constraint firstAttribute="height" constant="300" id="72i-HC-DPW"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Textlol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2p-li-NoX">
+                                            <rect key="frame" x="28" y="316" width="319" height="29.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eJq-uP-Szk" firstAttribute="top" secondItem="oYe-va-niC" secondAttribute="top" constant="8" id="3SD-cW-usy"/>
+                                        <constraint firstItem="q2p-li-NoX" firstAttribute="top" secondItem="eJq-uP-Szk" secondAttribute="bottom" constant="8" id="FOT-L4-Fq4"/>
                                         <constraint firstItem="eJq-uP-Szk" firstAttribute="leading" secondItem="oYe-va-niC" secondAttribute="leading" constant="8" id="Hun-Ij-t9G"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="q2p-li-NoX" secondAttribute="bottom" constant="8" id="JTQ-YL-235"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="q2p-li-NoX" secondAttribute="trailing" constant="20" id="QIi-bj-BL7"/>
                                         <constraint firstAttribute="trailing" secondItem="eJq-uP-Szk" secondAttribute="trailing" constant="8" id="XI3-3Z-aur"/>
+                                        <constraint firstItem="q2p-li-NoX" firstAttribute="leading" secondItem="oYe-va-niC" secondAttribute="leadingMargin" constant="20" id="xk9-D8-tmq"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="captionLabel" destination="q2p-li-NoX" id="DVw-E1-iS6"/>
+                                    <outlet property="imageVIew" destination="eJq-uP-Szk" id="G7T-KZ-ur3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
