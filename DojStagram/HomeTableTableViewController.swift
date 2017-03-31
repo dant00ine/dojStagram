@@ -143,7 +143,7 @@ class HomeTableTableViewController: UITableViewController {
                                 }
                                 
                                 if let user_id_int = photoDataDict["user_id"] as? Int64 {
-                                    newPhoto.user_id = user_id_int
+//                                    newPhoto.user_id = user_id_int
                                 }
                                 
                                 DispatchQueue.main.async {

@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -35,13 +35,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7k-se-4al">
                                         <rect key="frame" x="23" y="15" width="65" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Cancel"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.18042424321174622" green="0.18863362073898315" blue="0.047908328473567963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zxu-4A-T2q"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.75761681897738198" blue="0.33028328633481152" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ERn-4h-g1d"/>
                                 </constraints>
@@ -57,10 +59,10 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
-                                                <color key="value" red="1" green="0.67568200649999999" blue="0.1063626267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.25208201139999997" green="0.25208201139999997" blue="0.25208201139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
-                                                <color key="value" red="0.41521183560000002" green="0.45891579459999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -68,7 +70,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.41521183560000002" green="0.45891579459999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.47055136390000002" green="0.84936910990000003" blue="0.69844784339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="S6u-U7-eFm" firstAttribute="centerX" secondItem="MFN-09-cXY" secondAttribute="centerX" id="70X-fx-An6"/>
                                     <constraint firstAttribute="height" constant="100" id="Q5N-Iq-lZD"/>
@@ -108,7 +110,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KUW-g6-ZKy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4nk-ca-r0G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J3J-5Y-40C">
@@ -159,7 +161,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" id="zLk-Ba-ewc"/>
+                    <tabBarItem key="tabBarItem" title="" image="Me.png" selectedImage="Home.png" id="zLk-Ba-ewc"/>
                     <connections>
                         <outlet property="collectionView" destination="J3J-5Y-40C" id="oKS-oE-mX4"/>
                         <segue destination="W8F-9q-mll" kind="presentation" id="vcO-kq-Ycb"/>
@@ -178,36 +180,42 @@
                         <viewControllerLayoutGuide type="bottom" id="VNE-aW-aBb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nhm-L9-V58">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-JK-sOy">
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem systemItem="camera" id="E63-0t-j3Z">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="takePhoto:" destination="Vpx-3n-bdh" id="1WR-rS-xAz"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="a84-Lb-4Mx"/>
                                     <barButtonItem title="Photos" id="M6c-CB-gZh">
+                                        <color key="tintColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="getPhoto:" destination="Vpx-3n-bdh" id="cKf-gx-bg6"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jmV-0a-mfb"/>
                                     <barButtonItem title="Filter" id="Rae-l3-AWL">
+                                        <color key="tintColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="editPhoto:" destination="Vpx-3n-bdh" id="uSt-Jr-pF7"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hey-Vi-vQu"/>
                                     <barButtonItem systemItem="trash" id="oFg-4B-T0Y">
+                                        <color key="tintColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="deletePhoto:" destination="Vpx-3n-bdh" id="GAR-VO-kZP"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.25208201139999997" green="0.25208201139999997" blue="0.25208201139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8cY-jb-Vyt">
                                 <rect key="frame" x="0.0" y="199" width="375" height="375"/>
@@ -227,17 +235,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-uH-VMl">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-uH-VMl">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.47055136390000002" green="0.84936910990000003" blue="0.69844784339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.47055136390000002" green="0.84936910990000003" blue="0.69844784339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                    <color key="textColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Create a Post" id="hlL-Sx-aKI">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="0Ba-ZE-kKy">
+                                            <color key="tintColor" red="0.25208201139999997" green="0.25208201139999997" blue="0.25208201139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="goBack:" destination="Vpx-3n-bdh" id="Rt9-tw-kyt"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Post" id="nK6-ht-3Rp">
+                                            <color key="tintColor" red="0.25208201139999997" green="0.25208201139999997" blue="0.25208201139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="postPhoto:" destination="Vpx-3n-bdh" id="3sO-XK-NHa"/>
                                             </connections>
@@ -253,7 +269,7 @@
                             <constraint firstAttribute="trailing" secondItem="IJB-JK-sOy" secondAttribute="trailing" id="mab-WA-PLy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add Post" id="YKY-JO-KXG"/>
+                    <tabBarItem key="tabBarItem" title="" image="MakePost.png" selectedImage="MakePost.png" id="YKY-JO-KXG"/>
                     <connections>
                         <outlet property="captionText" destination="F1h-hi-4rL" id="O6C-EU-nRT"/>
                         <outlet property="imageView" destination="8cY-jb-Vyt" id="A64-fW-oBp"/>
@@ -437,34 +453,59 @@
                         <viewControllerLayoutGuide type="bottom" id="8zn-XA-PRA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3RO-tC-A9N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XQ-Kd-6fb">
-                                <rect key="frame" x="156" y="293" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LOGOUT"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XQ-Kd-6fb">
+                                <rect key="frame" x="37" y="159" width="300" height="300"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="JMH-yd-H2g"/>
+                                    <constraint firstAttribute="height" constant="300" id="q9K-wr-P8n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                <state key="normal" title="LOGOUT">
+                                    <color key="titleColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="logoutPressed:" destination="gsj-uO-GfR" eventType="touchUpInside" id="USN-FO-UXv"/>
                                     <segue destination="xX3-6l-LHz" kind="unwind" unwindAction="unwindToLoginViewWithSegue:" id="41R-1R-dZT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click Below To Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N75-Ct-fgf">
+                                <rect key="frame" x="16" y="74" width="343" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="G5D-fY-meI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" red="0.25208201139999997" green="0.25208201139999997" blue="0.25208201139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4XQ-Kd-6fb" firstAttribute="centerX" secondItem="3RO-tC-A9N" secondAttribute="centerX" id="5Ov-YY-t7e"/>
+                            <constraint firstItem="4XQ-Kd-6fb" firstAttribute="top" secondItem="N75-Ct-fgf" secondAttribute="bottom" constant="60" id="6eh-Fd-yxh"/>
+                            <constraint firstItem="N75-Ct-fgf" firstAttribute="leading" secondItem="3RO-tC-A9N" secondAttribute="leadingMargin" id="PoN-Yz-lEr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N75-Ct-fgf" secondAttribute="trailing" id="SEl-dO-q2q"/>
+                            <constraint firstItem="4XQ-Kd-6fb" firstAttribute="centerY" secondItem="3RO-tC-A9N" secondAttribute="centerY" id="ivJ-zs-uie"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="yfE-hg-OUa"/>
+                    <tabBarItem key="tabBarItem" title="" image="Settings.png" selectedImage="Settings.png" id="yfE-hg-OUa">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKD-uH-yix" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xX3-6l-LHz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-810" y="-765"/>
+            <point key="canvasLocation" x="-810.39999999999998" y="-765.06746626686663"/>
         </scene>
         <!--Home-->
         <scene sceneID="WTm-Q3-V0C">
             <objects>
                 <tableViewController storyboardIdentifier="HomeVC" title="Home" id="6gz-SL-uxq" customClass="HomeTableTableViewController" customModule="DojStagram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="362" sectionHeaderHeight="28" sectionFooterHeight="28" id="Avv-Vj-o93">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -472,7 +513,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="362"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tZ4-Ge-1np" id="oYe-va-niC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="361.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="361"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-uP-Szk">
@@ -509,7 +550,7 @@
                             <outlet property="delegate" destination="6gz-SL-uxq" id="cQg-vZ-xdG"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" id="FIu-bk-7Ou"/>
+                    <tabBarItem key="tabBarItem" title="" image="Home.png" selectedImage="Home.png" id="FIu-bk-7Ou"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85y-ae-2au" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -520,10 +561,11 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="lUU-zD-hTr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Yr9-bm-m37">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" id="Yr9-bm-m37">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.47055136390000002" green="0.84936910990000003" blue="0.69844784339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.96912534510000004" green="1" blue="0.94337247869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="gsj-uO-GfR" kind="relationship" relationship="viewControllers" id="mIf-iS-Kzq"/>
@@ -830,12 +872,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Home.png" width="85" height="40"/>
+        <image name="MakePost.png" width="85" height="45"/>
+        <image name="Me.png" width="85" height="45"/>
+        <image name="Settings.png" width="85" height="40"/>
         <image name="camera.png" width="640" height="640"/>
         <image name="dojoLogo.png" width="177" height="106"/>
         <image name="dojoLogo2.png" width="177" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TgR-9U-eG7"/>
-        <segue reference="Xv2-DG-G9V"/>
+        <segue reference="AAU-Ho-puQ"/>
+        <segue reference="QbP-yq-cTl"/>
     </inferredMetricsTieBreakers>
 </document>
