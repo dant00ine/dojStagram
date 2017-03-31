@@ -18,26 +18,29 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var cameraView: UIView!
     
     @IBAction func takePhoto(_ sender: UIButton) {
-        takeAPhoto = true
+        tookSnapshot = true
     }
+    @IBAction func cancel(_ sender: UIButton) {
+        tookSnapshot = false
+        stopCaptureSession()
+        dismiss(animated: true, completion: nil)
+    }
+
     
+    var delegate: PhotoViewController?
 
     let captureSession = AVCaptureSession()
     var captureDevice : AVCaptureDevice!
     var previewLayer : AVCaptureVideoPreviewLayer!
-    var takenPhoto: UIImage?
     
-    var takeAPhoto = false
-    
-//    var cameraViewFrame: CGRect!
-    
+    var tookSnapshot = false
     
     
     // view life cycle ----------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tookSnapshot = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -133,10 +136,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         
-        if takeAPhoto {
-            takeAPhoto = false
+        if tookSnapshot {
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
-                takenPhoto = image
+                delegate?.returnedImage(success: tookSnapshot, newImage: image)
                 stopCaptureSession()
                 dismiss(animated: true, completion: nil)
             }

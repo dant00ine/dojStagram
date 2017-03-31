@@ -25,18 +25,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4f-Kx-fbi">
-                                <rect key="frame" x="0.0" y="60" width="375" height="458"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="507"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boh-G2-mZI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7k-se-4al">
+                                        <rect key="frame" x="23" y="15" width="65" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zxu-4A-T2q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.75761681897738198" blue="0.33028328633481152" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ERn-4h-g1d"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFN-09-cXY">
-                                <rect key="frame" x="0.0" y="518" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6u-U7-eFm" customClass="CameraButton" customModule="DojStagram" customModuleProvider="target">
                                         <rect key="frame" x="150" y="13" width="75" height="75"/>
@@ -86,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1710" y="134"/>
+            <point key="canvasLocation" x="1709.5999999999999" y="133.5832083958021"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="XdV-TR-rSq">
@@ -212,7 +222,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ybj-2a-1Hp">
                                 <rect key="frame" x="16" y="540" width="343" height="30"/>
@@ -248,13 +258,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add Post" id="YKY-JO-KXG"/>
-                    <navigationItem key="navigationItem" id="RpR-bu-EVX">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Om4-mr-D4y"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="kLv-Zw-4GP"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="captionText" destination="F1h-hi-4rL" id="O6C-EU-nRT"/>
                         <outlet property="imageView" destination="8cY-jb-Vyt" id="A64-fW-oBp"/>
+                        <outlet property="locationText" destination="Ybj-2a-1Hp" id="XeE-vv-mIm"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="TakePhotoSegue" id="KCF-Ab-3cU"/>
+                        <segue destination="RBC-Fq-xPh" kind="presentation" identifier="EditPhotoSegue" id="wDL-P4-bpE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8X-gc-LQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -325,7 +334,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev9-Ag-gKV">
-                                <rect key="frame" x="204" y="612" width="46" height="30"/>
+                                <rect key="frame" x="197" y="612" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -557,7 +566,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gr8-OD-MHA"/>
                         <segue destination="gsj-uO-GfR" kind="relationship" relationship="viewControllers" id="mIf-iS-Kzq"/>
                         <segue destination="6gz-SL-uxq" kind="relationship" relationship="viewControllers" id="AAU-Ho-puQ"/>
                         <segue destination="Vpx-3n-bdh" kind="relationship" relationship="viewControllers" id="QbP-yq-cTl"/>

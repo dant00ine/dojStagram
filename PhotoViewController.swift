@@ -10,8 +10,9 @@ import UIKit
 
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var selectedPhoto:UIImage?
-    
+    var selectedPhoto: UIImage!
+    var photoChanged: Bool!
+
     let httpHelper = HTTPHelper()
     
     @IBOutlet weak var imageView: UIImageView!
@@ -28,14 +29,14 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var locationText: UITextField!
     
     @IBAction func takePhoto(_ sender: UIBarButtonItem) {
-        takeAPhoto()
+        performSegue(withIdentifier: "TakePhotoSegue", sender: nil)
     }
     
     @IBAction func getPhoto(_ sender: UIBarButtonItem) {
         getAPhoto()
     }
     @IBAction func editPhoto(_ sender: UIBarButtonItem) {
-        editAPhoto()
+        performSegue(withIdentifier: "EditPhotoSegue", sender: nil)
     }
     @IBAction func deletePhoto(_ sender: UIBarButtonItem) {
         deleteAPhoto()
@@ -47,7 +48,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     // post a photo
     func postAPhoto() {
-        let imgData: Data? = UIImagePNGRepresentation(selectedPhoto!)
+        if selectedPhoto == nil {
+            return
+        }
+        let imgData: Data? = UIImagePNGRepresentation(selectedPhoto)
         let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData!, title: "WOOT TYTLE")
         
         httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
@@ -78,19 +82,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
         })
     }
-
-    // take a new photo, add to library
-    func takeAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
-        self.present(cameraVC, animated: true, completion: nil)
-
-        if (cameraVC.takenPhoto != nil) {
-            selectedPhoto = cameraVC.takenPhoto
-            imageView.image = selectedPhoto
-            UIImageWriteToSavedPhotosAlbum(selectedPhoto!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        }
-    }
     
     // get a photo from the photo library
     func getAPhoto() {
@@ -102,23 +93,21 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        
         selectedPhoto = image
         imageView.image = selectedPhoto
+        dismiss(animated: true)
     }
 
-    // edit the currently selected photo
-    func editAPhoto() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(withIdentifier: "EditVC") as! EditViewController
-        editVC.currentImage = selectedPhoto
-        self.present(editVC, animated: true, completion: nil)
-
-        if (editVC.currentImage != nil) {
-            selectedPhoto = editVC.currentImage
-            imageView.image = selectedPhoto
-        }
-        if editVC.imageChanged! {    // photo edited, save to photo library
-            UIImageWriteToSavedPhotosAlbum(editVC.currentImage!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    // new image returned from Camera or Edit View
+    func returnedImage(success: Bool, newImage: UIImage) {
+        photoChanged = success
+        if photoChanged == true {
+            selectedPhoto = newImage
+            if selectedPhoto != nil {
+                imageView.image = selectedPhoto
+                UIImageWriteToSavedPhotosAlbum(selectedPhoto, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
         }
     }
     
@@ -135,9 +124,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    // delete a photo from gallery
-    func deleteAPhoto() {
-        
+    // delete a photo from library
+    func deleteAPhoto() {   // stub for now
     }
     
     //
@@ -145,6 +133,14 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        // display last selected photo
+        if selectedPhoto != nil {
+            imageView.image = selectedPhoto
+        }
+        photoChanged = false
+        // dismiss keyboard upon tap gesture
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -157,10 +153,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
                 self.tabBarController?.present(loginController, animated: true, completion: nil)
             }
-        }
-        // display last selected photo
-        if let availableImage = selectedPhoto {
-            imageView.image = availableImage
         }
     }
     
@@ -175,6 +167,21 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         myAlert.addAction(okAction)
         
         self.present(myAlert, animated: true, completion: nil)
+    }
+
+    // segues to Camera and Edit Views
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditPhotoSegue" {
+            let VC = segue.destination as! EditViewController
+            VC.delegate = self
+            VC.currentImage = selectedPhoto
+            photoChanged = false
+        }
+        else if segue.identifier == "TakePhotoSegue" {
+            let VC = segue.destination as! CameraViewController
+            VC.delegate = self
+            photoChanged = false
+        }
     }
     
 }
