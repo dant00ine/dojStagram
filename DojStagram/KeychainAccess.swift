@@ -62,7 +62,7 @@ public class KeychainAccess {
         if status == errSecSuccess {
             if let retrievedData = dataTypeRef as? NSData {
                 let password = NSString(data: retrievedData as Data, encoding: String.Encoding.utf8.rawValue)
-                return (password as! String)
+                return (password as String?)
             }
             return nil
         }

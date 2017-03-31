@@ -9,6 +9,9 @@
 import UIKit
 
 class LoginPageViewController: UIViewController {
+    @IBAction func unwindToLoginView(segue:UIStoryboardSegue) {
+    }
+    
 
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
@@ -115,6 +118,7 @@ class LoginPageViewController: UIViewController {
         })
         
         self.dismiss(animated: true, completion: nil)
+
     }
     
     
@@ -125,6 +129,8 @@ class LoginPageViewController: UIViewController {
         myAlert.addAction(okAction)
         
         self.present(myAlert, animated: true, completion: nil)
+        
+
     }
 
 }
