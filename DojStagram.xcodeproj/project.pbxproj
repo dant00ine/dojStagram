@@ -157,6 +157,8 @@
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
+				C0C939BB1E8D97090011D790 /* camera.jpg */,
+				C0C939B91E8B45270011D790 /* dojoLogo.png */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
 				C0F2EE1A1E7C57DE007858C6 /* DojStagram.xcdatamodeld */,
@@ -243,9 +245,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C939BA1E8B45270011D790 /* dojoLogo.png in Resources */,
 				C0F2EE211E7C57DE007858C6 /* LaunchScreen.storyboard in Resources */,
 				C0F2EE1E1E7C57DE007858C6 /* Assets.xcassets in Resources */,
 				C0F2EE191E7C57DE007858C6 /* Main.storyboard in Resources */,
+				C0C939BC1E8D97090011D790 /* camera.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +269,7 @@
 				AC84222F1E8C976F006CFCEA /* EditViewController.swift in Sources */,
 				C03C96731E8C53CE002B7F6F /* SettingsViewController.swift in Sources */,
 				C0F2EE331E7C8DC3007858C6 /* CameraButton.swift in Sources */,
+				C0C939C01E8D9ABE0011D790 /* CustomTableViewCell.swift in Sources */,
 				C09810CB1E8B39FE0092EBEF /* KeychainAccess.swift in Sources */,
 				C09810C01E8B38F30092EBEF /* NSData+Base64.m in Sources */,
 				C0F2EE1C1E7C57DE007858C6 /* DojStagram.xcdatamodeld in Sources */,

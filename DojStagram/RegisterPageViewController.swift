@@ -61,9 +61,9 @@ class RegisterPageViewController: UIViewController {
     
     
     
-    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: (() -> Void)? = nil, alertMessage:String){
+    func displayErrorAlertMessage(alertTitle:String = "Error DX", completion: ((UIAlertAction) -> Void)? = nil, alertMessage:String){
         let myAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: completion)
         myAlert.addAction(okAction)
         
         self.present(myAlert, animated: true, completion: nil)
@@ -91,10 +91,12 @@ class RegisterPageViewController: UIViewController {
                 return
             }
             
-            let completionHandler = {
+            let completionHandler: (UIAlertAction)-> Void = { alertAction in
+                
+                self.dismissViewController()
                 print(self)
-                self.dismiss(animated: true, completion: nil)
             }
+            self.displayErrorAlertMessage(alertTitle: "Success", completion: completionHandler, alertMessage: "Account has been created")
             
             // find some way to verify that the account was actually created
             
@@ -106,10 +108,18 @@ class RegisterPageViewController: UIViewController {
                 print(jsonParsingError.localizedDescription)
             }
             
-            self.displayErrorAlertMessage(alertTitle: "Success", completion: completionHandler, alertMessage: "Account has been created")
+           // self.displayErrorAlertMessage(alertTitle: "Success", completion: completionHandler, alertMessage: "Account has been created")
+            
+
         }
         
+    
         
+    }
+    
+    
+    func dismissViewController(){
+    self.dismiss(animated: true, completion: nil)
     }
 
 }

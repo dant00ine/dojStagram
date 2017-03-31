@@ -37,6 +37,7 @@ class SettingsViewController: UIViewController {
         clearLoggedinFlag()
         clearAPITokensFromKeyChain()
         self.viewDidAppear(true)
+        
     }
     
     func clearLoggedinFlag(){
@@ -54,5 +55,7 @@ class SettingsViewController: UIViewController {
             KeychainAccess.deletePasswordForAccount(password: userTokenExpiryDate, account: "Auth_Token_Expiry", service: "KeyChainService")
         }
     }
+    
+    
 
 }
