@@ -28,6 +28,8 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
     
     var Photos = [Photo]()
     
+    // View Controller Stuff
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPhotos()
@@ -80,7 +82,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
     }
     
     
-    
+    // Fetch the user's posts from the server
     func loadPhotoData(){
         let httpRequest = httpHelper.buildRequest(path: "get_user_photos", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
         
@@ -91,18 +93,12 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
                 // needs to be made into UIAlertController
                 let errorAlert = UIAlertView(title: "Error", message: errorMessage, delegate: nil, cancelButtonTitle: "OK")
                 errorAlert.show()
-                
                 return
             }
-            
-            
             do {
-                
                 if let jsonDataArray = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Any> {
                     
-
                     for imageData in jsonDataArray {
-                        
                         if let imageDataDict = imageData as? NSDictionary {
                             let photoPost = GalleryImage()
                             
@@ -111,28 +107,17 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
                             photoPost.imageThumbnailURL = imageDataDict.value(forKey:"image_url") as! String
                             
                             self.dataArray.append(photoPost)
-                            
                         }
-                        
                     }
-                    
                     self.collectionView?.reloadData()
-                
-                    
                 }
-                
             } catch let serializationError {
                 print(serializationError.localizedDescription)
             }
-            
-            
-        
         })
     }
     
     
-    
-
     // MARK: Database stuff
         // save it in our gallery
 //        let photo = getNewItem()
