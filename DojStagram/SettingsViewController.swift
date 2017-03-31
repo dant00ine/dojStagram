@@ -38,6 +38,11 @@ class SettingsViewController: UIViewController {
         clearAPITokensFromKeyChain()
         self.viewDidAppear(true)
         
+        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"){
+            self.present(loginVC, animated: true, completion: nil)
+        }
+        
+        
     }
     
     func clearLoggedinFlag(){
