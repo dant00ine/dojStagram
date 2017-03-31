@@ -131,20 +131,32 @@ struct HTTPHelper {
         let imageDataEnding = "\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
         bodyParams.append(imageDataEnding!)
         
+        
+        // BEGIN CAPTION DATA
+        
         let boundaryString2 = "--\(boundary)\r\n"
         let boundaryData2 = boundaryString2.data(using: String.Encoding.utf8)
-        
         bodyParams.append(boundaryData2!)
         
-        // pass the caption of the image
-        let formData = "Content-Disposition: form-data; name=\"title\"\r\n\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
-        bodyParams.append(formData!)
+        let captionSection = "Content-Disposition: form-data; name=\"caption\"\r\n\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
+        bodyParams.append(captionSection!)
         
-        let formData2 = caption.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        bodyParams.append(formData2!)
+        let captionData = caption.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        bodyParams.append(captionData!)
         
-        let formData3 = location.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        bodyParams.append(formData3!)
+        // BEGIN LOCATION DATA
+        
+        let boundaryString3 = "--\(boundary)\r\n"
+        let boundaryData3 = boundaryString3.data(using: String.Encoding.utf8)
+        bodyParams.append(boundaryData3!)
+        
+        let locationSection = "Content-Disposition: form-data; name=\"location\"\r\n\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
+        bodyParams.append(locationSection!)
+        
+        let locationData = location.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        bodyParams.append(locationData!)
+        
+        // CLOSE FORM
         
         let closingFormData = "\r\n".data(using: String.Encoding.utf8, allowLossyConversion: false)
         bodyParams.append(closingFormData!)
@@ -156,7 +168,6 @@ struct HTTPHelper {
         
         request.httpBody = bodyParams as Data
         
-        print("HERE DEM BODY PARAMS: \(bodyParams)")
         return request
     }
     

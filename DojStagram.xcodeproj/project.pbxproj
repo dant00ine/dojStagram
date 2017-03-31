@@ -154,6 +154,13 @@
 			isa = PBXGroup;
 			children = (
 				C02673241E8DE2B40034D0D5 /* dojoLogo.png */,
+				C01583A21E8EE9E400A77CC1 /* Home.png */,
+				C01583A31E8EE9E400A77CC1 /* MakePost.png */,
+				C01583A41E8EE9E400A77CC1 /* Me.png */,
+				C01583A01E8EE81200A77CC1 /* Settings.png */,
+				C015839C1E8ECC3300A77CC1 /* registerBackground.png */,
+				C02673221E8DDD180034D0D5 /* camera.jpg */,
+				C02673261E8DE8CD0034D0D5 /* camera.png */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -187,13 +194,6 @@
 				C0F2EE2E1E7C83F0007858C6 /* controllers */,
 				C09810CC1E8B3A0C0092EBEF /* session-utilities */,
 				C0F2EE1D1E7C57DE007858C6 /* Assets.xcassets */,
-				C01583A21E8EE9E400A77CC1 /* Home.png */,
-				C01583A31E8EE9E400A77CC1 /* MakePost.png */,
-				C01583A41E8EE9E400A77CC1 /* Me.png */,
-				C01583A01E8EE81200A77CC1 /* Settings.png */,
-				C015839C1E8ECC3300A77CC1 /* registerBackground.png */,
-				C02673221E8DDD180034D0D5 /* camera.jpg */,
-				C02673261E8DE8CD0034D0D5 /* camera.png */,
 				C0F2EE1F1E7C57DE007858C6 /* LaunchScreen.storyboard */,
 				C0F2EE221E7C57DE007858C6 /* Info.plist */,
 				C0F2EE1A1E7C57DE007858C6 /* DojStagram.xcdatamodeld */,
