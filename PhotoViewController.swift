@@ -123,17 +123,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             present(ac, animated: true)
         }
     }
-
-    
-    // share a photo with friends
-    func shareAPhoto() {
-        
-    }
-    
-    // rename a photo in gallery
-    func renameAPhoto() {
-        
-    }
     
     // delete a photo from library
     func deleteAPhoto() {   // stub for now
