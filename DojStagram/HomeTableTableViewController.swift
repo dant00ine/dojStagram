@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeTableTableViewController: UITableViewController {
     
     let httpHelper = HTTPHelper()
+    
+    var postData = [Photo]()
+    
+    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,25 +25,85 @@ class HomeTableTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        getHomeFeedPosts()
+        let isUserLoggedIn =  UserDefaults.standard.bool(forKey: "userLoggedIn")
         
+        if(!isUserLoggedIn){
+            print("user not logged in")
+            if let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginPageViewController {
+                self.tabBarController?.present(loginController, animated: true, completion: nil)
+            }
+        } else {
+            // check if API token has expired
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let userTokenExpiryDate: String? = KeychainAccess.passwordForAccount(account: "Auth_Token_Expiry", service: "KeyChainService")
+            
+            print("token expiry date: \(userTokenExpiryDate ?? "None")")
+            
+            let dateFromString: Date? = dateFormatter.date(from: userTokenExpiryDate!)
+            let now = Date()
+            
+            let comparison = now.compare(dateFromString!)
+            
+//            if shouldFetchNewData {
+                getHomeFeedPosts()
+//            }
+            
+            if comparison != ComparisonResult.orderedAscending {
+                //self.logoutBtnTapped()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
+    
+    
+    
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return postData.count
+    }
+    
+    
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostViewCell") as! PostViewCell
+        
+        let cellPostData = postData[indexPath.row]
+        
+        if let filePathString = cellPostData.filepath {
+            
+            let imgURL: URL = URL(string: filePathString)!
+            
+            let request = URLRequest(url: imgURL)
+            
+            let task = URLSession.shared.dataTask(with: request){(data:Data?, response:URLResponse?, error: Error?) -> Void in
+                if error != nil {
+                    print("Get image error: \(String(describing: error?.localizedDescription))")
+                } else {
+                    if data != nil {
+                        let image = UIImage(data: data!)
+                        DispatchQueue.main.async{
+                            cell.imageView?.image = image
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+        
+        
+        cell.captionLabel.text = cellPostData.name
+        
+        return cell
     }
     
     
@@ -61,7 +126,40 @@ class HomeTableTableViewController: UITableViewController {
                 do {
                     let jsonResponseDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray
                     
-                    print(jsonResponseDictionary ?? "No response dict")
+                    if jsonResponseDictionary != nil {
+                        
+                        for photoData in jsonResponseDictionary! {
+                            
+                            if let photoDataDict = photoData as? [String:AnyObject] {
+                                
+                                let newPhoto = Photo(context: self.moc)
+                                
+                                if let filePathString = photoDataDict["image_url"] as? String {
+                                    newPhoto.filepath = filePathString
+                                }
+                                
+                                if let nameString = photoDataDict["title"] as? String {
+                                    newPhoto.name = nameString
+                                }
+                                
+                                if let user_id_int = photoDataDict["user_id"] as? Int64 {
+//                                    newPhoto.user_id = user_id_int
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    self.postData.append(newPhoto)
+                                    self.tableView.reloadData()
+                                    print("total posts: \(self.postData.count)")
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    
                     
                 } catch let requestError {
                     print("request error: \(requestError.localizedDescription)")

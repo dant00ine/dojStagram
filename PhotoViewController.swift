@@ -13,6 +13,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var selectedPhoto: UIImage!
     var photoChanged: Bool!
+    
+    @IBOutlet weak var captionText: UITextField!
+    @IBOutlet weak var locationText: UITextField!
 
     let httpHelper = HTTPHelper()
     
@@ -25,9 +28,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func postPhoto(_ sender: UIBarButtonItem) {
         postAPhoto()
     }
-    
-    @IBOutlet weak var captionText: UITextField!
-    @IBOutlet weak var locationText: UITextField!
+
     
     @IBAction func takePhoto(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "TakePhotoSegue", sender: nil)
@@ -49,37 +50,47 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     // post a photo
     func postAPhoto() {
+        
+        let caption:String? = captionText.text
+        let location:String? = locationText.text
+        
         if selectedPhoto == nil {
             return
         }
-        let imgData: Data? = UIImagePNGRepresentation(selectedPhoto)
-        let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData!, title: "WOOT TYTLE")
         
-        httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
+        let unsafeImgData: Data? = UIImagePNGRepresentation(selectedPhoto)
+        
+        if let imgData: Data = unsafeImgData {
             
-            if error != nil {
-                let errorMessage = self.httpHelper.getErrorMessage(error: error!)
-                self.displayErrorAlertMessage(alertMessage: errorMessage)
-                
-                return
-            }
+            let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData, caption: caption ?? "no title", location: location ?? "unknown location")
             
-            do {
-                let jsonDataDict = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
                 
-                let galleryImgObjNew = GalleryImage()
+                if error != nil {
+                    let errorMessage = self.httpHelper.getErrorMessage(error: error!)
+                    self.displayErrorAlertMessage(alertMessage: errorMessage)
+                    
+                    return
+                }
                 
-                print("response from image upload: \(jsonDataDict)")
+                do {
+                    let jsonDataDict = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                    
+                    let galleryImgObjNew = GalleryImage()
+                    
+                    print("response from image upload: \(jsonDataDict)")
+                    
+                    galleryImgObjNew.imageId = jsonDataDict.value(forKey: "random_id") as! String
+                    galleryImgObjNew.imageTitle = jsonDataDict.value(forKey: "title") as! String
+                    galleryImgObjNew.imageThumbnailURL = jsonDataDict.value(forKey: "image_url") as! String
+                    
+                    self.dismiss(animated: true, completion: nil)
+                    
+                } catch let serializationError {
+                    print(serializationError.localizedDescription)
+                }
                 
-                galleryImgObjNew.imageId = jsonDataDict.value(forKey: "random_id") as! String
-                galleryImgObjNew.imageTitle = jsonDataDict.value(forKey: "title") as! String
-                galleryImgObjNew.imageThumbnailURL = jsonDataDict.value(forKey: "image_url") as! String
-                
-                self.dismiss(animated: true, completion: nil)
-                
-            } catch let serializationError {
-                print(serializationError.localizedDescription)
-            }
+            })
             
         })
         // now save the photo in CoreData
