@@ -194,7 +194,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchPoint: UITouch = touches.first!
         // needs work!!
-        let cameraViewSize = cameraView.bounds.size
+//        let cameraViewSize = cameraView.bounds.size
         let focusPoint = CGPoint(x: touchPoint.location(in: cameraView).x, y: touchPoint.location(in: cameraView).y)
         
         focusTo(focusPoint: focusPoint)

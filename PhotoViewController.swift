@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -81,6 +82,25 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
             
         })
+        // now save the photo in CoreData
+
+        // open access to db context
+        let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        let photo = Photo(context: dbContext)
+//        photo.imageID = galleryImgObjNew.imageID
+        photo.caption = captionText.text
+        photo.location = locationText.text
+        photo.createdAt = Date() as NSDate?
+        photo.likes = 0
+//        photo.filepath = String(describing: imagePath)
+//        photo.image = selectedPhoto as! NSData
+        print("Add photo: \(String(describing: photo.caption))")
+        do {    // save the item into db
+            try dbContext.save()
+        } catch {
+            print("DB \(error)")
+        }
     }
     
     // get a photo from the photo library

@@ -162,7 +162,7 @@
                     <tabBarItem key="tabBarItem" title="Me" id="zLk-Ba-ewc"/>
                     <connections>
                         <outlet property="collectionView" destination="J3J-5Y-40C" id="oKS-oE-mX4"/>
-                        <segue destination="W8F-9q-mll" kind="presentation" id="vcO-kq-Ycb"/>
+                        <segue destination="W8F-9q-mll" kind="presentation" identifier="PostViewSegue" id="vcO-kq-Ycb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNL-tp-lkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,7 +283,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="My Post" id="L7n-8n-4IZ">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bxW-kG-VrV"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bxW-kG-VrV">
+                                            <connections>
+                                                <action selector="goBack:" destination="W8F-9q-mll" id="JB2-xi-qJO"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -318,10 +322,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lMj-r3-atd">
                                 <rect key="frame" x="59" y="72" width="256" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56855557980000004" green="1" blue="0.93267764220000005" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="captionText" destination="RbP-qY-wDn" id="dBP-C2-fev"/>
+                        <outlet property="dateText" destination="qPe-lY-gu2" id="VaE-PR-IzL"/>
+                        <outlet property="imageView" destination="lMj-r3-atd" id="hTl-bN-Cw2"/>
+                        <outlet property="locationText" destination="Wld-L4-6cT" id="Z3k-1i-ZVf"/>
+                        <outlet property="nameText" destination="TdO-4V-FRv" id="Erv-Lq-zVC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="75Y-mB-RNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,13 +7,36 @@
 //
 
 import UIKit
+import CoreData
 
 class PostViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var captionText: UILabel!
+    @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var locationText: UILabel!
+    @IBOutlet weak var dateText: UILabel!
+    
+    @IBAction func goBack(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    var delegate: GalleryViewController?
+    var photo: Photo?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageView.image = photo?.image as? UIImage
+        self.captionText.text = photo?.caption
+        self.locationText.text = photo?.location
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .none
+        dateformatter.dateFormat = "MMM dd, yyyy"
+        let dateString = dateformatter.string(from: photo?.createdAt as! Date)
+        self.dateText.text = dateString
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +44,5 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
