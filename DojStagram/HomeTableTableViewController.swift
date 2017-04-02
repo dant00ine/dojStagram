@@ -13,9 +13,9 @@ class HomeTableTableViewController: UITableViewController {
     
     let httpHelper = HTTPHelper()
     
-    var postData = [Photo]()
+    var postData = [GalleryPost]()
     
-    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class HomeTableTableViewController: UITableViewController {
         
         let cellPostData = postData[indexPath.row]
         
-        if let filePathString = cellPostData.filepath {
+        if let filePathString = cellPostData.serverURL {
             
             let imgURL: URL = URL(string: filePathString)!
             
@@ -101,7 +101,10 @@ class HomeTableTableViewController: UITableViewController {
         }
         
         
-        cell.captionLabel.text = cellPostData.name
+        cell.captionLabel.text = cellPostData.caption
+//        cell.locationLabel.text = cellPostData.location
+//        cell.dateLabel.text = cellPostData.createdAt
+//        cell.likesLabel.text = cellPostData.likes
         
         return cell
     }
@@ -132,22 +135,23 @@ class HomeTableTableViewController: UITableViewController {
                             
                             if let photoDataDict = photoData as? [String:AnyObject] {
                                 
-                                let newPhoto = Photo(context: self.moc)
+//                                let newPhoto = Photo(context: self.moc)
+                                let newPost = GalleryPost()
                                 
                                 if let filePathString = photoDataDict["image_url"] as? String {
-                                    newPhoto.filepath = filePathString
+                                    newPost.serverURL = filePathString
                                 }
                                 
                                 if let nameString = photoDataDict["title"] as? String {
-                                    newPhoto.name = nameString
+                                    newPost.caption = nameString
                                 }
                                 
                                 if let user_id_int = photoDataDict["user_id"] as? Int64 {
-//                                    newPhoto.user_id = user_id_int
+                                    newPost.user_id = user_id_int
                                 }
                                 
                                 DispatchQueue.main.async {
-                                    self.postData.append(newPhoto)
+                                    self.postData.append(newPost)
                                     self.tableView.reloadData()
                                     print("total posts: \(self.postData.count)")
                                 }

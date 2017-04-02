@@ -14,11 +14,13 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var selectedPhoto: UIImage!
     var photoChanged: Bool!
     
+    let httpHelper = HTTPHelper()
+    let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
     @IBOutlet weak var captionText: UITextField!
     @IBOutlet weak var locationText: UITextField!
 
-    let httpHelper = HTTPHelper()
-    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
@@ -57,10 +59,31 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if selectedPhoto == nil {
             return
         }
-        
+
         let unsafeImgData: Data? = UIImagePNGRepresentation(selectedPhoto)
         
         if let imgData: Data = unsafeImgData {
+            // first, save the photo locally
+            
+            let photo = Photo(context: dbContext)
+            photo.name = captionText.text
+            photo.createdAt = Date() as NSDate?
+//            photo.location = locationText.text
+//            photo.likes = 0
+            // create unique filename and write image to it
+            let image_id = UUID().uuidString
+            let path = getDocumentsDirectory().appendingPathComponent(image_id)
+            photo.image = image_id
+            photo.filepath = String(describing: path)
+            try? imgData.write(to: path)
+            print("Add photo: \(String(describing: photo.filepath))")
+            do {    // save the item into db
+                try dbContext.save()
+            } catch {
+                print("DB \(error)")
+            }
+
+            // then save it to the server
             
             let httpRequest = httpHelper.uploadRequest(path: "upload_photo", data: imgData, caption: caption ?? "no title", location: location ?? "unknown location")
             
@@ -92,26 +115,14 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 
             })
             
-        })
-        // now save the photo in CoreData
-
-        // open access to db context
-        let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
-        let photo = Photo(context: dbContext)
-//        photo.imageID = galleryImgObjNew.imageID
-        photo.caption = captionText.text
-        photo.location = locationText.text
-        photo.createdAt = Date() as NSDate?
-        photo.likes = 0
-//        photo.filepath = String(describing: imagePath)
-//        photo.image = selectedPhoto as! NSData
-        print("Add photo: \(String(describing: photo.caption))")
-        do {    // save the item into db
-            try dbContext.save()
-        } catch {
-            print("DB \(error)")
         }
+    }
+    
+    // local directory for storing photo image files
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     // get a photo from the photo library
@@ -158,7 +169,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     // delete a photo from library
     func deleteAPhoto() {   // stub for now
     }
-    
+
+
     //
     //  View Controller stuff
     //

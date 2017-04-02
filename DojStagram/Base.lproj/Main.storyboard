@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lUU-zD-hTr">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lUU-zD-hTr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -551,25 +551,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostViewCell" rowHeight="362" id="tZ4-Ge-1np" customClass="PostViewCell" customModule="DojStagram" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostViewCell" rowHeight="362" id="tZ4-Ge-1np">
                                 <rect key="frame" x="0.0" y="28" width="375" height="362"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tZ4-Ge-1np" id="oYe-va-niC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="361"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-uP-Szk">
-                                            <rect key="frame" x="8" y="8" width="359" height="300"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="300" id="72i-HC-DPW"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Textlol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2p-li-NoX">
                                             <rect key="frame" x="28" y="316" width="319" height="29.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-uP-Szk">
+                                            <rect key="frame" x="8" y="8" width="359" height="300"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="300" id="72i-HC-DPW"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eJq-uP-Szk" firstAttribute="top" secondItem="oYe-va-niC" secondAttribute="top" constant="8" id="3SD-cW-usy"/>
@@ -583,7 +583,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="captionLabel" destination="q2p-li-NoX" id="DVw-E1-iS6"/>
-                                    <outlet property="imageVIew" destination="eJq-uP-Szk" id="G7T-KZ-ur3"/>
+                                    <outlet property="imageView" destination="eJq-uP-Szk" id="OIa-N7-uB6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

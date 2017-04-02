@@ -23,12 +23,13 @@ class PostViewController: UIViewController {
     
     var delegate: GalleryViewController?
     var photo: Photo?
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageView.image = photo?.image as? UIImage
-        self.captionText.text = photo?.caption
-        self.locationText.text = photo?.location
+        self.imageView.image = image
+        self.captionText.text = photo?.name
+//        self.locationText.text = photo?.location
         
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .medium

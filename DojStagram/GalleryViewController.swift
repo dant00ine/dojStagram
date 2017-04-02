@@ -19,24 +19,24 @@ class GalleryImage {
 
 // cached photos in CoreData look like this:
 //class Photo {
-//    var image: UIImage!
-//    var filepath: String!
-//    var caption: String!
-//    var location: String!
+//    var image: String!        // image ID
+//    var filepath: String!     // file URL
+//    var name: String!         // caption
 //    var createdAt: Date!
-//    var likes: Int!
+//    var location: String!
 //}
 
 // Posts (from either source
 class GalleryPost {
-    var imageThumbnailURL : String! // URL to thumbnail image
+    var serverURL : String! // URL to server image
+    var localURL : String!  // URL to local image
     var imageId : String!           // unique ID for entry
-    var thumbLocalImage : UIImage!  // image as thumbnail
+    var image : UIImage!  // image as thumbnail
     var caption: String!
-    var username: String!
     var location: String!
     var createdAt: Date!
-    var likes: Int!
+    var user_id: Int64!
+    var likes: Int64!
 }
 
 private let reuseIdentifier = "PhotoViewCell"
@@ -45,11 +45,14 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
     
     var shouldFetchNewData = true
     var GalleryImages = [GalleryImage]()    // photos stored on server
-    var Photos = [Photo]()  // photos stored in CoreData
+    var Photos = [Photo]()  // photos stored locally
     var GalleryPosts = [GalleryPost]()  // all posts (from server and CoreData)
     
     
     let httpHelper = HTTPHelper()
+    // open access to db context
+    let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -90,13 +93,13 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
             }
         }
 
-        // fetch posts stored locally
-        fetchPhotosFromDB()
-        // fetch posts from the server
         if shouldFetchNewData {
             shouldFetchNewData = false
             //self.setNavigationItems()
-            loadPhotoData()
+            // fetch posts from the server
+//            loadPhotosFromServer()
+            // fetch posts stored locally
+            fetchPhotosFromDB()
         }
     }
 
@@ -117,7 +120,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 
     
     // Fetch the user's posts from the server
-    func loadPhotoData(){
+    func loadPhotosFromServer(){
         let httpRequest = httpHelper.buildRequest(path: "get_user_photos", method: "GET", authType: HTTPRequestAuthType.HTTPTokenAuth)
         
         httpHelper.sendRequest(request: httpRequest, completion: {(data:Data?, error:Error?) in
@@ -156,13 +159,14 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
                             self.GalleryImages.append(photoImage)
                             // also place in GalleryPosts array
                             let photoPost = GalleryPost()
-                            photoPost.imageThumbnailURL = photoImage.imageThumbnailURL
+                            photoPost.serverURL = photoImage.imageThumbnailURL
+                            photoPost.localURL = ""
                             photoPost.imageId = photoImage.imageId
-                            photoPost.thumbLocalImage = photoImage.thumbLocalImage
+                            photoPost.image = photoImage.thumbLocalImage
                             photoPost.caption = photoImage.imageTitle
-                            photoPost.username = ""
                             photoPost.location = ""
                             photoPost.createdAt = Date()
+                            photoPost.user_id = 0
                             photoPost.likes = 0
                             self.GalleryPosts.append(photoPost)
                         }
@@ -174,33 +178,11 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
             }
         })
     }
-    
-    // MARK: Database stuff
-        // save it in our gallery
-//        let photo = getNewItem()
-//        photo.name = "Unknown"
-//        photo.filepath = String(describing: imagePath)
-//        photo.image = imageName
-//        photo.createdAt = Date() as NSDate?
-//        print("Add photo: \(String(describing: photo.name))")
-//        addItemtoDB(photo)
-//        collectionView?.reloadData()
-//        dismiss(animated: true, completion: nil)
 
-//    // get directory path to photos
-//    func getDocumentsDirectory() -> URL {
-//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
 
     //
     // DATABASE FUNCTIONS
     //
-    
-    // open access to db context
-    let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     
 //    func getNewItem() -> Photo {
 //        let item = Photo(context: dbContext)
@@ -251,19 +233,30 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         // now add them to GalleryPosts array
         var photoPost = GalleryPost()
         for i in 0..<Photos.count {
-            photoPost.imageThumbnailURL = ""
-            photoPost.imageId = ""
-//            photoPost.thumbLocalImage = Photos[i].image
-            photoPost.caption = Photos[i].caption
-            photoPost.username = ""
-            photoPost.location = Photos[i].location
+            photoPost.serverURL = ""
+            photoPost.localURL = Photos[i].filepath
+            photoPost.caption = Photos[i].name
+            photoPost.user_id = 0
+            photoPost.location = ""
             photoPost.createdAt = Photos[i].createdAt as Date!
-            photoPost.likes = Int(Photos[i].likes)
+//            photoPost.likes = Int(Photos[i].likes)
+            photoPost.imageId = Photos[i].image
+//            let path = URL(describing: Photos[i].filepath)
+            let path = getDocumentsDirectory().appendingPathComponent(Photos[i].image!)
+            photoPost.image = UIImage(contentsOfFile: path.path)
+            
             self.GalleryPosts.append(photoPost)
         }
         self.collectionView.reloadData()
     }
-
+    
+    // get directory path to photos
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
 }
 
 extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -291,7 +284,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 //        let rowIndex = self.GalleryImages.count - (indexPath.row + 1)
         
         cell.backgroundColor = UIColor.black
-        cell.imageView.image = GalleryPosts[rowIndex].thumbLocalImage
+        cell.imageView.image = GalleryPosts[rowIndex].image
         cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
         cell.imageView.layer.borderWidth = 2
         cell.imageView.layer.cornerRadius = 3
@@ -322,9 +315,5 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 //                }
 //            }
 //        }
-    // let photo = Photos[indexPath.item]
-    // let path = getDocumentsDirectory().appendingPathComponent(photo.image!)
-    // cell.imageView.image = UIImage(contentsOfFile: path.path)
-    // make it fancy
 
 }
