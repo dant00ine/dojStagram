@@ -1,5 +1,5 @@
 //
-//  PostCell.swift
+//  PostViewCell.swift
 //  DojStagram
 //
 //  Created by Daniel Thompson on 3/31/17.
@@ -9,8 +9,8 @@
 import UIKit
 
 class PostViewCell: UITableViewCell {
-    
-    @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
     
 }

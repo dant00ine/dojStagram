@@ -231,7 +231,9 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         }
 
         // now add them to GalleryPosts array
+        self.GalleryPosts.removeAll()
         var photoPost = GalleryPost()
+        var imagePath: URL
         for i in 0..<Photos.count {
             photoPost.serverURL = ""
             photoPost.localURL = Photos[i].filepath
@@ -242,10 +244,11 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 //            photoPost.likes = Int(Photos[i].likes)
             photoPost.imageId = Photos[i].image
 //            let path = URL(describing: Photos[i].filepath)
-            let path = getDocumentsDirectory().appendingPathComponent(Photos[i].image!)
-            photoPost.image = UIImage(contentsOfFile: path.path)
+            imagePath = getDocumentsDirectory().appendingPathComponent(Photos[i].image!)
+            photoPost.image = UIImage(contentsOfFile: imagePath.path)
             
             self.GalleryPosts.append(photoPost)
+            print("Post \(i): \(photoPost.caption) at \(photoPost.imageId)")
         }
         self.collectionView.reloadData()
     }
@@ -265,7 +268,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     // Tap cell - show the post
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "EditItem", sender: indexPath)
+        performSegue(withIdentifier: "PostViewSegue", sender: indexPath)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

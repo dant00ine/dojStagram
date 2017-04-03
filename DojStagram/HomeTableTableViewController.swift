@@ -14,6 +14,7 @@ class HomeTableTableViewController: UITableViewController {
     let httpHelper = HTTPHelper()
     
     var postData = [GalleryPost]()
+    var shouldFetchNewData = true
     
 //    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -45,9 +46,10 @@ class HomeTableTableViewController: UITableViewController {
             
             let comparison = now.compare(dateFromString!)
             
-//            if shouldFetchNewData {
+            if shouldFetchNewData {
                 getHomeFeedPosts()
-//            }
+                shouldFetchNewData = false
+            }
             
             if comparison != ComparisonResult.orderedAscending {
                 //self.logoutBtnTapped()
@@ -71,9 +73,7 @@ class HomeTableTableViewController: UITableViewController {
         return postData.count
     }
     
-    
-    
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostViewCell") as! PostViewCell
         
@@ -92,15 +92,14 @@ class HomeTableTableViewController: UITableViewController {
                     if data != nil {
                         let image = UIImage(data: data!)
                         DispatchQueue.main.async{
-                            cell.imageView?.image = image
+                            cell.postImageView?.image = image
                         }
                     }
                 }
             }
             task.resume()
         }
-        
-        
+
         cell.captionLabel.text = cellPostData.caption
 //        cell.locationLabel.text = cellPostData.location
 //        cell.dateLabel.text = cellPostData.createdAt
