@@ -114,7 +114,7 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
         PostView.delegate = self
         if segue.identifier == "PostViewSegue" {   // show post
             let indexPath = sender as! NSIndexPath
-            PostView.photo = Photos[indexPath.row]
+            PostView.post = GalleryPosts[indexPath.row]
         }
     }
 
@@ -232,9 +232,9 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 
         // now add them to GalleryPosts array
         self.GalleryPosts.removeAll()
-        var photoPost = GalleryPost()
         var imagePath: URL
         for i in 0..<Photos.count {
+            var photoPost = GalleryPost()
             photoPost.serverURL = ""
             photoPost.localURL = Photos[i].filepath
             photoPost.caption = Photos[i].name
@@ -244,11 +244,11 @@ class GalleryViewController: UIViewController, UIToolbarDelegate, UIImagePickerC
 //            photoPost.likes = Int(Photos[i].likes)
             photoPost.imageId = Photos[i].image
 //            let path = URL(describing: Photos[i].filepath)
-            imagePath = getDocumentsDirectory().appendingPathComponent(Photos[i].image!)
+            imagePath = getDocumentsDirectory().appendingPathComponent(photoPost.imageId)
             photoPost.image = UIImage(contentsOfFile: imagePath.path)
             
             self.GalleryPosts.append(photoPost)
-            print("Post \(i): \(photoPost.caption) at \(photoPost.imageId)")
+            print("Photo \(i): \(photoPost.caption!)")
         }
         self.collectionView.reloadData()
     }
@@ -283,40 +283,15 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoViewCell
-        let rowIndex = indexPath.row
-//        let rowIndex = self.GalleryImages.count - (indexPath.row + 1)
-        
+        let rowIndex = indexPath.item
         cell.backgroundColor = UIColor.black
         cell.imageView.image = GalleryPosts[rowIndex].image
-        cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        cell.imageView.layer.borderWidth = 2
-        cell.imageView.layer.cornerRadius = 3
-        cell.layer.cornerRadius = 7
+//        print ("showing cell \(rowIndex) as \(GalleryPosts[rowIndex].caption!)")
+//        cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        cell.imageView.layer.borderWidth = 2
+//        cell.imageView.layer.cornerRadius = 3
+//        cell.layer.cornerRadius = 7
         return cell
     }
-
-//        let galleryRowObj = self.GalleryImages[rowIndex] as GalleryImage
-//        let imgURL: URL = URL(string: galleryRowObj.imageThumbnailURL)!
-//        let request = URLRequest(url: imgURL)
-//        
-//        URLSession.shared.dataTask(with: request){(data: Data?, response: URLResponse?, error: Error?) -> Void in
-//            if error != nil {
-//                print("Get image error: \(String(describing: error?.localizedDescription))")
-//            } else {
-//                if data != nil {
-//                    let image = UIImage(data: data!)
-//                    galleryRowObj.thumbLocalImage = image
-//                    
-//                    DispatchQueue.main.async{
-//                        cell.imageView.image = image
-//                        
-//                        cell.imageView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//                        cell.imageView.layer.borderWidth = 2
-//                        cell.imageView.layer.cornerRadius = 3
-//                        cell.layer.cornerRadius = 7
-//                    }
-//                }
-//            }
-//        }
 
 }

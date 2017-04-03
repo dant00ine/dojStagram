@@ -22,20 +22,19 @@ class PostViewController: UIViewController {
     }
     
     var delegate: GalleryViewController?
-    var photo: Photo?
-    var image: UIImage?
+    var post: GalleryPost?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageView.image = image
-        self.captionText.text = photo?.name
-//        self.locationText.text = photo?.location
+        self.imageView.image = post?.image
+        self.captionText.text = post?.caption
+        self.locationText.text = post?.location
         
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .none
         dateformatter.dateFormat = "MMM dd, yyyy"
-        let dateString = dateformatter.string(from: photo?.createdAt as! Date)
+        let dateString = dateformatter.string(from: post!.createdAt)
         self.dateText.text = dateString
 
     }
